@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:social_serveces_app/ui/person_tap/editProfile/edit_profile_screen.dart';
 import '../../../widget/custom_button_settings.dart';
 import '../../../widget/profile_header.dart';
 import '../../authentications_screen/login/login_screen.dart';
@@ -18,7 +19,7 @@ class SettingsTab extends StatelessWidget {
       child: Column(
         children: [
           ProfileHeader(onClick: () {
-
+            Navigator.of(context).pushNamed(EditProfileScreen.routeName);
           },),
           SizedBox(height: 28.h),
           Divider(),

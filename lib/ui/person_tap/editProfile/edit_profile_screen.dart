@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/cubit/user_state.dart';
 
-class ProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatelessWidget {
+  static const String routeName = "edit profile screen";
 
-  const ProfileScreen({super.key});
+  EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

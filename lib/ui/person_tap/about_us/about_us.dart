@@ -1,18 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../core/style/app_colors.dart';
 
 class AboutUs extends StatelessWidget {
   static const String routeName = "AboutUS";
-  const AboutUs({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About Us"),
+        backgroundColor: AppColors.primaryLightColor,
+        title: Text(AppLocalizations.of(context)!.about_us),
+        centerTitle: true,
+        titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
+        iconTheme: const IconThemeData(
+            color: Colors.white
+        ),
       ),
-      body: Container(
-        color: Colors.red,
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // App Logo
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/images/science.png'), // Your logo path
+            ),
+            SizedBox(height: 20),
+
+            // App Name
+            Text(
+              'social services',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+
+            // App Description
+            Text(
+              'ServiceConnect is a social platform that helps you find, share, and connect with local service providers. Whether you need a plumber, designer, or tutor — we make connecting easy, fast, and reliable.',
+              style: TextStyle(fontSize: 16, height: 1.5),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 30),
+
+            // Team Section
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Our Team',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+            ),
+            SizedBox(height: 10),
+
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Nahla Selim'),
+              subtitle: Text('Flutter Developer'),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Ibrahim Elgebaly'),
+              subtitle: Text('Flutter Developer'),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Mohamed Mahmoud'),
+              subtitle: Text('Backend Developer'),
+            ),
+            SizedBox(height: 20),
+
+            // Contact Info
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Contact Us',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+            ),
+            SizedBox(height: 10),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text('support@socialservices.com'),
+            ),
+            ListTile(
+              leading: Icon(Icons.web),
+              title: Text('www.serviceconnect.app'),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+

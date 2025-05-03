@@ -18,6 +18,7 @@ import 'package:social_serveces_app/ui/home/home_screen.dart';
 import 'package:social_serveces_app/ui/home_tap/service/service_screen.dart';
 import 'package:social_serveces_app/ui/person_tap/about_us/about_us.dart';
 import 'package:social_serveces_app/ui/person_tap/contact_us/contact_us.dart';
+import 'package:social_serveces_app/ui/person_tap/editProfile/edit_profile_screen.dart';
 import 'package:social_serveces_app/ui/person_tap/settings/settings_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/fifth_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/first_screen.dart';
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
                     }
                     return supportedLocales.first;
                   },
-                  initialRoute: HomeScreen.routeName,
+                  initialRoute: FirstScreen.routeName,
                   routes: {
                     HomeScreen.routeName: (_) => const HomeScreen(),
                     LoginScreen.routeName: (_) =>  LoginScreen(),
@@ -102,8 +103,9 @@ class MyApp extends StatelessWidget {
                     FourthScreen.routeName: (_) => const FourthScreen(),
                     FifthhScreen.routeName: (_) => const FifthhScreen(),
                     SettingsScreen.routeName: (_) => const SettingsScreen(),
-                    ContactUs.routeName: (_) => const ContactUs(),
-                    AboutUs.routeName: (_) => const AboutUs(),
+                    ContactUs.routeName: (_) =>  ContactUs(),
+                    AboutUs.routeName: (_) => AboutUs(),
+                    EditProfileScreen.routeName:(_) =>  EditProfileScreen()
                   },
                 );
               },

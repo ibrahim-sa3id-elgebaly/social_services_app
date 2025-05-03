@@ -5,7 +5,7 @@ class UserModel {
   final String lastName;
   final String email;
   final String phone;
-//  final String gender;
+  final String gender;
   String profilePic="assets/images/avatar.png";
 
   UserModel({
@@ -13,7 +13,7 @@ class UserModel {
     required this.lastName,
     required this.email,
     required this.phone,
-//    required this.gender,
+    required this.gender,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> jsonData) {
@@ -22,6 +22,7 @@ class UserModel {
       lastName: jsonData['user'][ApiKey.lastName],
       email: jsonData['user'][ApiKey.email],
       phone: jsonData['user'][ApiKey.phone],
+      gender: jsonData['user'][ApiKey.gender],
     );
   }
 }
