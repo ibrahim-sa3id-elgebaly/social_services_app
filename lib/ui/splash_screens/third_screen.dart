@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../widget/custom_button.dart';
+import '../../widget/skip_button.dart';
+import '../authentications_screen/login/login_screen.dart';
+import 'fourth_screen.dart';
+
+class ThirdScreen extends StatefulWidget {
+  static const String routeName = "third_screen";
+  const ThirdScreen({super.key});
+
+  @override
+  State<ThirdScreen> createState() => _ThirdScreenState();
+}
+
+class _ThirdScreenState extends State<ThirdScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: REdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          children: [
+            SizedBox(height: 55.h),
+            SkipButton(onPressed: Skip,text: "Skip"),
+            SizedBox(height: 30.h),
+            SizedBox(
+              width: 364.w,
+              height: 400.h,
+              child: Image.asset('assets/images/splash7.jpg'),
+            ),
+            SizedBox(height: 35.h),
+            Text('''   خطوة بسيطة منك   
+   ممكن تغيّر حياة حد''', style: Theme.of(context).textTheme.headlineMedium),
+            SizedBox(height: 35.h),
+            CustomButton(label: "Next", onClick: next),
+          ],
+        ),
+      ),
+    );
+  }
+  next(){
+    Navigator.pushNamed(context, FourthScreen.routeName);
+  }
+  Skip(){
+    Navigator.pushNamed(context, LoginScreen.routeName);
+  }
+}

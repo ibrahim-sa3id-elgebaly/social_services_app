@@ -1,0 +1,23 @@
+{
+  "social_services" : "Social Services",
+  "home" : "Home",
+  "achievement" : "Achievement",
+  "forum" : "Forum",
+  "person" : "Person",
+  "settings" : "Settings",
+  "contact_us" : "Contact Us",
+  "about_us" : "About Us",
+  "log_out" : "Log Out",
+  "language" : "Language",
+  "theme" : "Theme",
+  "blood_donation" : "Blood Donation",
+  "roadside_assistance" : "Roadside Assistance",
+  "aid_distribution" : "Aid Distribution",
+  "home_renovation" : "Home Renovation",
+  "disaster_relief" : "Disaster Relief",
+  "education_and_training" : "Education & Training",
+  "health_and_awareness" : "Health & Awareness",
+  "orphan_care" : "Orphan Care",
+  "seasonal_aid" : "Seasonal Aid",
+  "volunteer_for_good": "Volunteer For Good"
+}

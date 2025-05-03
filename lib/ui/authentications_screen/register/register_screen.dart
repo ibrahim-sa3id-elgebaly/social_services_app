@@ -1,0 +1,190 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:social_serveces_app/core/cubit/user_cubit.dart';
+import '../../../core/constants/constants.dart';
+import '../../../core/cubit/user_state.dart';
+import '../../../core/style/app_colors.dart';
+import '../../../widget/custom_button.dart';
+import '../../../widget/custom_form_field.dart';
+import '../login/login_screen.dart';
+
+class RegisterScreen extends StatelessWidget {
+  static const String routeName = "Register";
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: BlocConsumer<UserCubit, UserState>(listener: (context, state) {
+        if (state is SignUpSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(state.message),
+          ));
+          Navigator.of(context).pop();
+          Navigator.pushNamed(context, LoginScreen.routeName);
+        } else if (state is SignUpFailure) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(state.errMessage),
+          ));
+        }
+      }, builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: AppColors.primaryLightColor,
+            title: const Text("Create Account"),
+            centerTitle: true,
+            titleTextStyle: const TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+            iconTheme: IconThemeData(color: Colors.white),
+          ),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Form(
+                key: context.read<UserCubit>().signUpFormKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CustomFormField(
+                        controller: context.read<UserCubit>().signUpFirstName,
+                        label: "First Name",
+                        keyboard: TextInputType.name,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your name";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.001),
+                      CustomFormField(
+                        controller: context.read<UserCubit>().signUpLastName,
+                        label: "Last Name",
+                        keyboard: TextInputType.name,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your name";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
+                      CustomFormField(
+                        controller: context.read<UserCubit>().signUpEmail,
+                        label: "Email Address",
+                        keyboard: TextInputType.emailAddress,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your email";
+                          }
+                          if (!isValidEmail(value)) {
+                            return "enter valid email";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
+                      CustomFormField(
+                        controller: context.read<UserCubit>().signUpPassword,
+                        isPassword: true,
+                        label: "Password",
+                        keyboard: TextInputType.visiblePassword,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your password";
+                          }
+                          if (value.length < 6) {
+                            return "password should be at least 6";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
+                      CustomFormField(
+                        controller:
+                            context.read<UserCubit>().signUpConfirmPassword,
+                        isPassword: true,
+                        label: "Password confirmation",
+                        keyboard: TextInputType.visiblePassword,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your password confirmation";
+                          }
+                          if (value !=
+                              context.read<UserCubit>().signUpPassword.text) {
+                            return "should be same as password";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
+                      CustomFormField(
+                        controller: context.read<UserCubit>().signUpPhoneNumber,
+                        label: "Phone number",
+                        keyboard: TextInputType.phone,
+                        maxLength: 11,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your phone";
+                          }
+                          if (value.length < 11) {
+                            return "Please enter valid phone number";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01),
+                      CustomFormField(
+                        controller: context.read<UserCubit>().signUpGender,
+                        label: "Gender",
+                        keyboard: TextInputType.text,
+                        validate: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return "Please enter your gender";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05),
+                      state is SignUpLoading
+                          ? CircularProgressIndicator()
+                          : CustomButton(
+                              label: "Create Account",
+                              onClick: () {
+                                if (context
+                                        .read<UserCubit>()
+                                        .signUpFormKey
+                                        .currentState
+                                        ?.validate() ==
+                                    true) {
+                                  context.read<UserCubit>().signUp();
+                                }
+                              }),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
+  createAccount() {
+//    if (context.read<UserCubit>().signUpFormKey.currentState?.validate() == true){
+    //     Navigator.pushNamed(context, LoginScreen.routeName);
+    //   }
+  }
+}
