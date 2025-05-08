@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../core/model/article_model.dart';
+import '../core/model/service_api_model/service_api_model.dart';
 
 class ServiceItem extends StatelessWidget {
-
-  final ArticleModel articleModel;
-  final int index;
+  String image;
+  final ServiceApiModel serviceApiModel;
   final void Function(String category) onPress;
 
-  ServiceItem({
-    super.key,
-    required this.articleModel,
-    required this.index,
-    required this.onPress
-  });
+  ServiceItem(
+      {super.key,
+      required this.image,
+      required this.serviceApiModel,
+      required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +23,18 @@ class ServiceItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            "assets/images/${articleModel.image}",
+            "assets/images/$image",
             width: double.infinity,
             height: 232.h,
             fit: BoxFit.cover,
           ),
-          Text(articleModel.source),
-          Text(articleModel.title),
-          Align(alignment: Alignment.centerRight, child: Text(articleModel.time)),
+          Text(serviceApiModel.name),
+          Text(serviceApiModel.address),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+                serviceApiModel.workingHours ?? serviceApiModel.contactNumber),
+          ),
         ],
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'tabs/chat_tab.dart';
+import 'tabs/forum_tab.dart';
 import 'tabs/home_tab.dart';
-import 'tabs/search_tab.dart';
-import 'tabs/settings_tab.dart';
+import 'tabs/event_tab.dart';
+import 'tabs/person_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
@@ -21,9 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   List<Widget> tabs = [
     const HomeTab(),
-    const SearchTab(),
-    const ChatTab(),
-    const SettingsTab()
+    EventTab(),
+    const ForumTab(),
+    const PersonTab()
   ];
 
   @override
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           items: [
             BottomNavigationBarItem(icon: const Icon(Icons.home), label: AppLocalizations.of(context)!.home),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.local_activity), label: AppLocalizations.of(context)!.achievement),
+                icon: const Icon(Icons.event), label: AppLocalizations.of(context)!.event),
             BottomNavigationBarItem(icon: const Icon(Icons.chat), label: AppLocalizations.of(context)!.forum),
             BottomNavigationBarItem(
                 icon: const Icon(Icons.person), label: AppLocalizations.of(context)!.person),

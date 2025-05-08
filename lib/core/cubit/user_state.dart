@@ -1,4 +1,4 @@
-import '../model/model_api/user_model.dart';
+import '../model/auth_model/user_model.dart';
 
 class UserState {}
 

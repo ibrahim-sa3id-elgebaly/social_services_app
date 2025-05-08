@@ -96,7 +96,7 @@ class MyApp extends StatelessWidget {
                     LoginScreen.routeName: (_) =>  LoginScreen(),
                     RegisterScreen.routeName: (_) => RegisterScreen(),
                     ForgottenPasswordScreen.routeName: (_) => const ForgottenPasswordScreen(),
-                    ServiceScreen.routeName: (_) => const ServiceScreen(),
+                    ServiceScreen.routeName: (_) =>  ServiceScreen(),
                     FirstScreen.routeName: (_) => const FirstScreen(),
                     SecondScreen.routeName: (_) => const SecondScreen(),
                     ThirdScreen.routeName: (_) => const ThirdScreen(),

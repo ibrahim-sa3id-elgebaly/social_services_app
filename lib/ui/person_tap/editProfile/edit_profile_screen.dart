@@ -18,15 +18,14 @@ class EditProfileScreen extends StatelessWidget {
               content: Text(state.errMessage),
             ),
           );
-
         }
       },
       builder: (context, state) {
         return Scaffold(
-          body: /*state is GetUserLoading
+          body: state is GetUserLoading
               ? const CircularProgressIndicator()
               : state is GetUserSuccess
-              ?*/ ListView(
+              ? ListView(
             children: [
               const SizedBox(height: 16),
               //! Profile Picture
@@ -38,7 +37,7 @@ class EditProfileScreen extends StatelessWidget {
 
               //! firstName
               ListTile(
-                title: Text("state.user.firstName"),
+                title: Text("state.user.firstName.toString()"),
                 leading: const Icon(Icons.person),
               ),
               const SizedBox(height: 16),
@@ -66,7 +65,7 @@ class EditProfileScreen extends StatelessWidget {
 
             ],
           )
-//              : Container(),
+              : Container(),
         );
       },
     );

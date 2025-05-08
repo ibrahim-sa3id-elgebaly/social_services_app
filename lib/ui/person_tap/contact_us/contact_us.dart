@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/style/app_colors.dart';
+
 class ContactUs extends StatefulWidget {
   static const String routeName = "ContactUS";
   @override
@@ -29,8 +31,16 @@ class _ContactUsScreenState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryLightColor,
         title: Text('Contact Us'),
         centerTitle: true,
+        titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
+        iconTheme: const IconThemeData(
+            color: Colors.white
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),

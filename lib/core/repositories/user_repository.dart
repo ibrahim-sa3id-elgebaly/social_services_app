@@ -6,9 +6,9 @@ import '../api/api_dio/end_ponits.dart';
 import '../api/errors/exceptions.dart';
 import '../api/functions/upload_image_to_api.dart';
 import '../cache/cache_helper.dart';
-import '../model/model_api/sign_in_model.dart';
-import '../model/model_api/sign_up_model.dart';
-import '../model/model_api/user_model.dart';
+import '../model/auth_model/sign_in_model.dart';
+import '../model/auth_model/sign_up_model.dart';
+import '../model/auth_model/user_model.dart';
 
 class UserRepository {
   final ApiConsumer api;

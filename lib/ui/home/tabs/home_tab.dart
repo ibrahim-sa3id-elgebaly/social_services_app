@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeTab extends StatelessWidget {
+//  final void Function(String category) onPress;
   const HomeTab({super.key});
 
   @override
@@ -28,15 +29,19 @@ class HomeTab extends StatelessWidget {
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.9,
+                childAspectRatio: 1 / 1,
                 mainAxisSpacing: 20.h,
                 crossAxisSpacing: 25.w,
               ),
               itemBuilder: (context, index) => ServicesItem(
                 onPress: (category) {
-                  Navigator.pushNamed(context, ServiceScreen.routeName);
+                  Navigator.pushNamed(
+                    context,
+                    ServiceScreen.routeName,
+                    arguments: categories[index],
+                  );
                 },
-                categoriesModel: categories[index],
+                servicesModel: categories[index],
                 index: index,
               ),
               itemCount: categories.length,

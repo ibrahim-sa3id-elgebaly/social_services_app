@@ -3,13 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/model/services_model.dart';
 
 class ServicesItem extends StatelessWidget {
-  final ServicesModel categoriesModel;
+  final ServicesModel servicesModel;
   final int index;
   final void Function(String category) onPress;
 
   const ServicesItem({
     super.key,
-    required this.categoriesModel,
+    required this.servicesModel,
     required this.index,
     required this.onPress,
   });
@@ -19,7 +19,7 @@ class ServicesItem extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return InkWell(
-          onTap: () => onPress(categoriesModel.id),
+          onTap: () => onPress(servicesModel.id),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25.r),
             topRight: Radius.circular(25.r),
@@ -32,7 +32,7 @@ class ServicesItem extends StatelessWidget {
               maxWidth: constraints.maxWidth,
             ),
             decoration: BoxDecoration(
-              color: categoriesModel.background,
+              color: servicesModel.background,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25.r),
                 topRight: Radius.circular(25.r),
@@ -48,7 +48,7 @@ class ServicesItem extends StatelessWidget {
                   height: constraints.maxHeight * 0.6, // 60% من الارتفاع
                   width: constraints.maxWidth * 0.8,    // 80% من العرض
                   child: Image.asset(
-                    "assets/images/${categoriesModel.image}",
+                    "assets/images/${servicesModel.image}",
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -58,7 +58,7 @@ class ServicesItem extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w),
                     child: Text(
-                      categoriesModel.title,
+                      servicesModel.title,
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

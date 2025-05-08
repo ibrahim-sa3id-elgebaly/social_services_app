@@ -9,8 +9,8 @@ import '../../person_tap/contact_us/contact_us.dart';
 import '../../person_tap/settings/settings_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SettingsTab extends StatelessWidget {
-  const SettingsTab({super.key});
+class PersonTab extends StatelessWidget {
+  const PersonTab({super.key});
 
   @override
   Widget build(BuildContext context) {

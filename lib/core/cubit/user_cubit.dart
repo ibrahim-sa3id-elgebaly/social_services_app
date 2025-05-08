@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../cache/cache_helper.dart';
-import '../model/model_api/sign_in_model.dart';
+import '../model/auth_model/sign_in_model.dart';
 import '../repositories/user_repository.dart';
 import 'user_state.dart';
 

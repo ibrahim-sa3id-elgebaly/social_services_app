@@ -45,7 +45,7 @@ dependencies:
   dartz: ^0.10.1
   flutter_localizations:
     sdk: flutter
-  intl: any
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
