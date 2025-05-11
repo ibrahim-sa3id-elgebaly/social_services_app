@@ -24,7 +24,7 @@ class AppStyle {
         color: Colors.white,
       ),
       titleLarge: TextStyle(
-          color:AppColors.secondaryLightColor,
+          color: AppColors.secondaryLightColor,
           fontSize: 26.sp,
           fontWeight: FontWeight.w400
       ),
@@ -51,24 +51,26 @@ class AppStyle {
     ),
     colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.deepPurple,
-      primary: AppColors.primaryLightColor,
-      secondary: AppColors.secondaryLightColor
+        primary: AppColors.primaryLightColor,
+        secondary: AppColors.secondaryLightColor
     ),
     useMaterial3: true,
   );
 
+
+
   static ThemeData darkTheme = ThemeData(
     appBarTheme: AppBarTheme(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff426e6e),
         centerTitle: true,
         titleTextStyle: TextStyle(
           fontSize: 22.sp,
           fontWeight: FontWeight.w400,
-          color: AppColors.primaryLightColor,
+          color: AppColors.secondaryDarkColor,
         )),
     textTheme: TextTheme(
       headlineMedium: TextStyle(
-        color: AppColors.primaryLightColor,
+        color: AppColors.secondaryDarkColor,
         fontWeight: FontWeight.w700,
         fontSize: 25,
       ),
@@ -77,25 +79,41 @@ class AppStyle {
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
+      titleLarge: TextStyle(
+          color: AppColors.secondaryDarkColor,
+          fontSize: 26.sp,
+          fontWeight: FontWeight.w400
+      ),
+      displayMedium: TextStyle(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w600,
+          color: Colors.white
+      ),
+
     ),
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: 	Color(0xFF2C2C2C),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.primaryDarkColor,
-      selectedItemColor: AppColors.primaryLightColor,
-      unselectedItemColor: Colors.white,
+      selectedItemColor: AppColors.secondaryDarkColor,
+      unselectedItemColor: Color(0xffffffff),
       selectedIconTheme: IconThemeData(
-        color: AppColors.primaryLightColor,
+        color: AppColors.secondaryDarkColor,
         size: 35,
       ),
       unselectedIconTheme: IconThemeData(
-        color: Colors.white,
+        color: Color(0xff6a6e6d),
         size: 30,
       ),
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple,
-      primary: AppColors.primaryDarkColor,
-      secondary: AppColors.secondaryLightColor,
+    colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.deepPurple,
+        primary: AppColors.primaryDarkColor,
+        secondary: AppColors.secondaryDarkColor
     ),
     useMaterial3: true,
   );
+
+
+
+
 }

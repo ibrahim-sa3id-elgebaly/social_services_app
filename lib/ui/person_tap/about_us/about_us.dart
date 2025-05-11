@@ -9,7 +9,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryLightColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(AppLocalizations.of(context)!.about_us),
         centerTitle: true,
         titleTextStyle: const TextStyle(
@@ -28,7 +28,7 @@ class AboutUs extends StatelessWidget {
             // App Logo
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/science.png'), // Your logo path
+              backgroundImage: AssetImage('assets/images/logo1.png'), // Your logo path
             ),
             SizedBox(height: 20),
 

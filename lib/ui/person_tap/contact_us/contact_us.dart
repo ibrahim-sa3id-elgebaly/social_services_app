@@ -31,7 +31,7 @@ class _ContactUsScreenState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryLightColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text('Contact Us'),
         centerTitle: true,
         titleTextStyle: const TextStyle(

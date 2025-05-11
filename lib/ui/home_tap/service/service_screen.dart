@@ -22,7 +22,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
     final service = ModalRoute.of(context)!.settings.arguments as ServicesModel;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.primaryLightColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(service.title),
           titleTextStyle: const TextStyle(
             color: Colors.white,

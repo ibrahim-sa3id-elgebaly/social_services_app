@@ -20,12 +20,12 @@ class SettingsScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColors.primaryLightColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             title: Text(AppLocalizations.of(context)!.settings),
-            titleTextStyle: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
+            titleTextStyle: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontSize:22.sp),
             iconTheme: const IconThemeData(
                 color: Colors.white
             ),
