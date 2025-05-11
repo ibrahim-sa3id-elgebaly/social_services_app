@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 typedef editFunction =void Function();
 class ProfileHeader extends StatelessWidget {
   editFunction onClick;
-  ProfileHeader({super.key,required this.onClick});
+  String name;
+  String email;
+  ProfileHeader({super.key,required this.name,required this.email,required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class ProfileHeader extends StatelessWidget {
           Column(
             children: [
               Text(
-                'Ibrahim elgebaly',
+                name,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -26,7 +28,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                'ibrahimelgebaly26@gmail.com',
+                email,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,

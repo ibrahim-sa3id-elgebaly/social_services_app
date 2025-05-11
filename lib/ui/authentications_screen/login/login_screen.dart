@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/core/cubit/user_state.dart';
-import 'package:social_serveces_app/ui/person_tap/settings/settings_screen.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/style/app_colors.dart';
@@ -23,14 +22,15 @@ class LoginScreen extends StatelessWidget {
         if (state is SignInSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text("success"),
+              content: Text("Login Successful"),
             ),
           );
-          context.read<UserCubit>().getUserProfile();
-          Navigator.pop(context);
-          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            HomeScreen.routeName,
+            (Route<dynamic> route) => false,
+          );
         } else if (state is SignInFailure) {
-          Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errMessage),
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
           ),
           body: Center(
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: REdgeInsets.all(16),
               child: Form(
                 key: context.read<UserCubit>().signInFormKey,
                 child: SingleChildScrollView(
@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 55.h),
                       state is SignInLoading
-                          ? CircularProgressIndicator()
+                          ? Center(child: CircularProgressIndicator())
                           : CustomButton(
                               label: "Login",
                               onClick: () {
@@ -134,5 +134,4 @@ class LoginScreen extends StatelessWidget {
       }),
     );
   }
-
 }

@@ -25,7 +25,7 @@ class CustomButtonSettings extends StatelessWidget {
             Icon(
               icon,
               size: 28,
-              color: AppColors.secondaryLightColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             SizedBox(width: 20),
             Text(iconName, style: Theme.of(context).textTheme.titleLarge),

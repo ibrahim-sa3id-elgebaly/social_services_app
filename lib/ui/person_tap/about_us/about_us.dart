@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/style/app_colors.dart';
 
 class AboutUs extends StatelessWidget {
@@ -9,13 +10,13 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryLightColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(AppLocalizations.of(context)!.about_us),
         centerTitle: true,
-        titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold),
+        titleTextStyle: Theme.of(context)
+            .textTheme
+            .titleMedium!
+            .copyWith(fontSize: 22.sp),
         iconTheme: const IconThemeData(
             color: Colors.white
         ),
@@ -28,7 +29,7 @@ class AboutUs extends StatelessWidget {
             // App Logo
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/science.png'), // Your logo path
+              backgroundImage: AssetImage('assets/images/logo1.png'),
             ),
             SizedBox(height: 20),
 

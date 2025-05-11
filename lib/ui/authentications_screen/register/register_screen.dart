@@ -9,9 +9,14 @@ import '../../../widget/custom_button.dart';
 import '../../../widget/custom_form_field.dart';
 import '../login/login_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   static const String routeName = "Register";
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,10 +25,14 @@ class RegisterScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(state.message),
           ));
-          Navigator.of(context).pop();
-          Navigator.pushNamed(context, LoginScreen.routeName);
+          context.read<UserCubit>().signUpFirstName.clear();
+          context.read<UserCubit>().signUpLastName.clear();
+          context.read<UserCubit>().signUpEmail.clear();
+          context.read<UserCubit>().signUpPassword.clear();
+          context.read<UserCubit>().signUpConfirmPassword.clear();
+          context.read<UserCubit>().signUpPhoneNumber.clear();
+          context.read<UserCubit>().signUpGender.clear();
         } else if (state is SignUpFailure) {
-          Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(state.errMessage),
           ));
@@ -158,19 +167,19 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05),
                       state is SignUpLoading
-                          ? CircularProgressIndicator()
+                          ? Center(child: CircularProgressIndicator())
                           : CustomButton(
-                              label: "Create Account",
-                              onClick: () {
-                                if (context
-                                        .read<UserCubit>()
-                                        .signUpFormKey
-                                        .currentState
-                                        ?.validate() ==
-                                    true) {
-                                  context.read<UserCubit>().signUp();
-                                }
-                              }),
+                                  label: "Create Account",
+                                  onClick: () {
+                                    if (context
+                                            .read<UserCubit>()
+                                            .signUpFormKey
+                                            .currentState
+                                            ?.validate() ==
+                                        true) {
+                                      context.read<UserCubit>().signUp();
+                                    }
+                                  }),
                     ],
                   ),
                 ),
@@ -182,9 +191,4 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  createAccount() {
-//    if (context.read<UserCubit>().signUpFormKey.currentState?.validate() == true){
-    //     Navigator.pushNamed(context, LoginScreen.routeName);
-    //   }
-  }
 }

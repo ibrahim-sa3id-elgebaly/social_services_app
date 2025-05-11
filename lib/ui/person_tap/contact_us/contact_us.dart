@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/style/app_colors.dart';
 
@@ -31,13 +32,13 @@ class _ContactUsScreenState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryLightColor,
-        title: Text('Contact Us'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: const Text('Contact Us'),
         centerTitle: true,
-        titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold),
+        titleTextStyle: Theme.of(context)
+            .textTheme
+            .titleMedium!
+            .copyWith(fontSize: 22.sp),
         iconTheme: const IconThemeData(
             color: Colors.white
         ),

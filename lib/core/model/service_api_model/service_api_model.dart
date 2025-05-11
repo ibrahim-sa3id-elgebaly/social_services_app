@@ -1,57 +1,52 @@
-import 'location_model.dart';
 
 class ServiceApiModel {
   final String id;
-  final String name;
-  final String? description;
-  final String address;
+  final String title;
+  final String description;
+  final String location;
+  final DateTime date;
+  final String formattedTime;
   final String contactNumber;
-  final String? createdAt;
-  final String? workingHours;
-  final bool isActive;
+  final DateTime createdAt;
   final int v;
-  final LocationModel location;
 
   ServiceApiModel({
     required this.id,
-    required this.name,
-    this.description,
-    required this.address,
-    required this.contactNumber,
-    this.workingHours,
-    this.createdAt,
-    required this.isActive,
-    required this.v,
+    required this.title,
+    required this.description,
     required this.location,
+    required this.date,
+    required this.formattedTime,
+    required this.contactNumber,
+    required this.createdAt,
+    required this.v,
   });
 
   factory ServiceApiModel.fromJson(Map<String, dynamic> json) {
     return ServiceApiModel(
       id: json['_id'],
-      name: json['name'],
+      title: json['title'],
       description: json['description'],
-      address: json['address'],
+      location: json['location'],
+      date: DateTime.parse(json['date']),
+      formattedTime: json['time'],
       contactNumber: json['contactNumber'],
-      workingHours: json['workingHours'],
-      createdAt: json['createdAt'],
-      isActive: json['isActive'],
+      createdAt: DateTime.parse(json['createdAt']),
       v: json['__v'],
-      location: LocationModel.fromJson(json['location']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
-      'name': name,
-      'address': address,
-      'contactNumber': contactNumber,
-      'workingHours': workingHours,
-      'isActive': isActive,
-      '__v': v,
-      'location': location.toJson(),
+      'title': title,
       'description': description,
-      'createdAt': createdAt,
+      'location': location,
+      'date': date.toIso8601String(),
+      'time': formattedTime,
+      'contactNumber': contactNumber,
+      'createdAt': createdAt.toIso8601String(),
+      '__v': v,
     };
   }
 }

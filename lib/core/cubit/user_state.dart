@@ -43,3 +43,48 @@ final class GetUserFailure extends UserState {
 
   GetUserFailure({required this.errMessage});
 }
+
+
+final class UpdateProfileSuccess extends UserState {
+  final String message;
+  final UserModel user;
+
+  UpdateProfileSuccess({required this.message, required this.user});
+}
+
+final class UpdateProfileLoading extends UserState {}
+
+final class UpdateProfileFailure extends UserState {
+  final String errMessage;
+
+  UpdateProfileFailure({required this.errMessage});
+}
+
+final class ForgotPasswordSuccess extends UserState {
+  final String message;
+
+  ForgotPasswordSuccess({required this.message});
+}
+
+final class ForgotPasswordLoading extends UserState {}
+
+final class ForgotPasswordFailure extends UserState {
+  final String errMessage;
+
+  ForgotPasswordFailure({required this.errMessage});
+}
+
+final class ResetPasswordSuccess extends UserState {
+  final String message;
+
+  ResetPasswordSuccess({required this.message});
+}
+
+final class ResetPasswordLoading extends UserState {}
+
+final class ResetPasswordFailure extends UserState {
+  final String errMessage;
+
+  ResetPasswordFailure({required this.errMessage});
+}
+

@@ -12,6 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = "SettingsScreen";
+
   const SettingsScreen({super.key});
 
   @override
@@ -20,15 +21,7 @@ class SettingsScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColors.primaryLightColor,
             title: Text(AppLocalizations.of(context)!.settings),
-            titleTextStyle: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-            iconTheme: const IconThemeData(
-                color: Colors.white
-            ),
           ),
           body: Padding(
             padding: REdgeInsets.symmetric(vertical: 10, horizontal: 36),
@@ -53,13 +46,11 @@ class SettingsScreen extends StatelessWidget {
                     padding: REdgeInsets.symmetric(vertical: 5, horizontal: 15),
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Theme.of(context).colorScheme.primary),
+                            color: Theme.of(context).colorScheme.onPrimary),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Text(
                       state.language == "ar" ? "العربيه" : "English",
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.black,
-                      ),
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ),
                 ),
@@ -81,13 +72,11 @@ class SettingsScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Theme.of(context).colorScheme.primary),
+                            color: Theme.of(context).colorScheme.onPrimary),
                         borderRadius: BorderRadius.circular(10)),
                     child: Text(
                       state.themeMode == ThemeMode.dark ? "Dark" : "Light",
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.black,
-                      ),
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ),
                 )
@@ -99,7 +88,6 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
-
 
 /*
 import 'package:flutter/cupertino.dart';

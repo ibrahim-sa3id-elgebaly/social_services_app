@@ -5,15 +5,16 @@ import 'app_colors.dart';
 class AppStyle {
   static ThemeData lightTheme = ThemeData(
     appBarTheme: AppBarTheme(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primaryLightColor,
         centerTitle: true,
+        iconTheme: const IconThemeData(color: AppColors.secondaryLightColor),
         titleTextStyle: TextStyle(
           fontSize: 22.sp,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           color: AppColors.secondaryLightColor,
         )),
     textTheme: TextTheme(
-      headlineMedium: TextStyle(
+      headlineMedium: const TextStyle(
         color: AppColors.secondaryLightColor,
         fontWeight: FontWeight.w700,
         fontSize: 25,
@@ -23,19 +24,19 @@ class AppStyle {
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
+      labelMedium: TextStyle(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.black,
+      ),
       titleLarge: TextStyle(
-          color:AppColors.secondaryLightColor,
+          color: AppColors.secondaryLightColor,
           fontSize: 26.sp,
-          fontWeight: FontWeight.w400
-      ),
+          fontWeight: FontWeight.w400),
       displayMedium: TextStyle(
-          fontSize: 20.sp,
-          fontWeight: FontWeight.w600,
-          color: Colors.black
-      ),
-
+          fontSize: 20.sp, fontWeight: FontWeight.w600, color: Colors.black,),
     ),
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: AppColors.scaffoldLightColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.primaryLightColor,
       selectedItemColor: AppColors.secondaryLightColor,
@@ -49,26 +50,32 @@ class AppStyle {
         size: 30,
       ),
     ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: AppColors.scaffoldLightColor
+    ),
     colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.deepPurple,
+      seedColor: Colors.deepPurple,
       primary: AppColors.primaryLightColor,
-      secondary: AppColors.secondaryLightColor
+      secondary: AppColors.secondaryLightColor,
+      onPrimary: AppColors.onPrimaryLightColor,
+      background: AppColors.scaffoldLightColor,
     ),
     useMaterial3: true,
   );
 
   static ThemeData darkTheme = ThemeData(
     appBarTheme: AppBarTheme(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.primaryDarkColor,
         centerTitle: true,
+        iconTheme: const IconThemeData(color: AppColors.secondaryDarkColor),
         titleTextStyle: TextStyle(
           fontSize: 22.sp,
-          fontWeight: FontWeight.w400,
-          color: AppColors.primaryLightColor,
+          fontWeight: FontWeight.w500,
+          color: AppColors.secondaryDarkColor,
         )),
     textTheme: TextTheme(
-      headlineMedium: TextStyle(
-        color: AppColors.primaryLightColor,
+      headlineMedium: const TextStyle(
+        color: AppColors.secondaryDarkColor,
         fontWeight: FontWeight.w700,
         fontSize: 25,
       ),
@@ -77,24 +84,41 @@ class AppStyle {
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
+      labelMedium: TextStyle(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.white,
+      ),
+      titleLarge: TextStyle(
+          color: AppColors.secondaryDarkColor,
+          fontSize: 26.sp,
+          fontWeight: FontWeight.w400),
+      displayMedium: TextStyle(
+          fontSize: 20.sp, fontWeight: FontWeight.w600, color: Colors.white),
     ),
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: AppColors.scaffoldDarkColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.primaryDarkColor,
-      selectedItemColor: AppColors.primaryLightColor,
-      unselectedItemColor: Colors.white,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.black,
       selectedIconTheme: IconThemeData(
-        color: AppColors.primaryLightColor,
+        color: Colors.white,
         size: 35,
       ),
       unselectedIconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.black,
         size: 30,
       ),
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple,
+    bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.scaffoldDarkColor
+    ),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Colors.deepPurple,
       primary: AppColors.primaryDarkColor,
-      secondary: AppColors.secondaryLightColor,
+      secondary: AppColors.secondaryDarkColor,
+      onPrimary: AppColors.onPrimaryDarkColor,
+      background: AppColors.scaffoldDarkColor,
     ),
     useMaterial3: true,
   );

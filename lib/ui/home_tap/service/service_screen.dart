@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/core/api/api_manager.dart';
+import 'package:social_serveces_app/ui/service_details_screen/service_details_screen.dart';
 import '../../../core/model/service_api_model/service_api_model.dart';
 import '../../../core/model/services_model.dart';
 import '../../../core/style/app_colors.dart';
@@ -22,7 +23,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
     final service = ModalRoute.of(context)!.settings.arguments as ServicesModel;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.primaryLightColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(service.title),
           titleTextStyle: const TextStyle(
             color: Colors.white,
@@ -62,8 +63,15 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 child: ListView.separated(
                   itemBuilder: (context, index) => ServiceItem(
                     serviceApiModel: articles[index],
-                    image: service.image,
-                    onPress: (category) {},
+                    onPress: () {
+                      Navigator.pushNamed(
+                          context,
+                          ServiceDetailsScreen.routeName,
+                          arguments: [
+                            articles[index],
+                          ]
+                      );
+                    },
                   ),
                   separatorBuilder: (context, index) => Divider(),
                   itemCount: articles.length,

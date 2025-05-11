@@ -1,231 +1,107 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/cubit/user_state.dart';
 
 class EditProfileScreen extends StatelessWidget {
   static const String routeName = "edit profile screen";
 
-  EditProfileScreen({super.key});
+  const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
-        if (state is GetUserFailure) {
+        if (state is UpdateProfileFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errMessage),
-            ),
+            SnackBar(content: Text(state.errMessage)),
           );
+        } else if (state is UpdateProfileSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          body: state is GetUserLoading
-              ? const CircularProgressIndicator()
-              : state is GetUserSuccess
-              ? ListView(
-            children: [
-              const SizedBox(height: 16),
-              //! Profile Picture
-              CircleAvatar(
-                radius: 80,
-                backgroundImage: NetworkImage("state.user.profilePic"),
-              ),
-              const SizedBox(height: 16),
+        final cubit = context.read<UserCubit>();
+        final user = (state is GetUserSuccess) ? state.user : null;
 
-              //! firstName
-              ListTile(
-                title: Text("state.user.firstName.toString()"),
-                leading: const Icon(Icons.person),
-              ),
-              const SizedBox(height: 16),
-
-              //! lastName
-              ListTile(
-                title: Text("state.user.lastName"),
-                leading: const Icon(Icons.person),
-              ),
-              const SizedBox(height: 16),
-
-              //! Email
-              ListTile(
-                title: Text("state.user.email"),
-                leading: const Icon(Icons.email),
-              ),
-              const SizedBox(height: 16),
-
-              //! Phone number
-              ListTile(
-                title: Text("state.user.phone"),
-                leading: const Icon(Icons.phone),
-              ),
-              const SizedBox(height: 16),
-
-            ],
-          )
-              : Container(),
-        );
-      },
-    );
-  }
-}
-
-
-
-
-
-
-
-
-
-/*
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import '../../../core/cubit/user_cubit.dart';
-import '../../../core/cubit/user_state.dart';
-import '../../../core/style/app_colors.dart';
-
-class EditProfileScreen extends StatefulWidget {
-  static const String routeName = "EditProfileScreen";
-  const EditProfileScreen({Key? key}) : super(key: key);
-
-  @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
-}
-
-class _EditProfileScreenState extends State<EditProfileScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _mobileController = TextEditingController();
-  File? _pickedImage;
-
-  Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _pickedImage = File(pickedFile.path);
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
-      listener: (context, state) {
-        if (state is GetUserFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errMessage),
-            ),
-          );
-          Navigator.of(context).pop();
+        if (user != null) {
+          cubit.signUpFirstName.text = user.firstName!;
+          cubit.signUpLastName.text = user.lastName!;
+          cubit.signUpPhoneNumber.text = user.mobileNumber!;
+          cubit.signUpGender.text = user.gender!;
         }
-      },
-      builder:  (context, state) {
+
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColors.primaryLightColor,
-            title: const Text("Edit profile"),
-            centerTitle: true,
-            titleTextStyle: const TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            title: const Text('Update Profile'),
+            titleTextStyle: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontSize: 22.sp),
+            iconTheme: const IconThemeData(
+                color: Colors.white
+            ),
           ),
-          body: BlocConsumer<UserCubit, UserState>(
-            listener: (context, state) {
-              if (state is GetUserFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.errMessage),
-                  ),
-                );
-              }
-            },
-            builder: (context, state) {
-              return Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Form(
-                  key: _formKey,
-                  child: ListView(
-                    children: [
-                      GestureDetector(
-                        onTap: _pickImage,
-                        child: CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                          _pickedImage != null
-                              ? FileImage(_pickedImage!)
-                              : null,
-                          child: _pickedImage == null
-                              ? const Icon(Icons.add_a_photo, size: 50)
-                              : null,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      TextFormField(
-                        controller: _firstNameController,
-                        decoration: const InputDecoration(
-                            labelText: 'First Name'),
-                        validator: (value) =>
-                        value!.isEmpty
-                            ? 'Enter first name'
-                            : null,
-                      ),
-                      TextFormField(
-                        controller: _lastNameController,
-                        decoration: const InputDecoration(
-                            labelText: 'Last Name'),
-                        validator: (value) =>
-                        value!.isEmpty
-                            ? 'Enter last name'
-                            : null,
-                      ),
-                      TextFormField(
-                        controller: _emailController,
-                        decoration: const InputDecoration(labelText: 'Email'),
-                        validator: (value) =>
-                        value!.isEmpty
-                            ? 'Enter email'
-                            : null,
-                      ),
-                      TextFormField(
-                        controller: _mobileController,
-                        decoration: const InputDecoration(
-                            labelText: 'Mobile Number'),
-                        validator: (value) =>
-                        value!.isEmpty
-                            ? 'Enter mobile number'
-                            : null,
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<EditProfileCubit>().updateProfile(
-                              firstName: _firstNameController.text,
-                              lastName: _lastNameController.text,
-                              email: _emailController.text,
-                              mobile: _mobileController.text,
-                              imagePath: _pickedImage?.path,
-                            );
-                          }
-                        },
-                        child: const Text('Save Changes'),
-                      ),
-                    ],
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    final image = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery);
+                    if (image != null) {
+                      cubit.uploadProfilePic(image);
+                    }
+                  },
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundImage: cubit.profilePic != null
+                        ? FileImage(File(cubit.profilePic!.path))
+                        : (user?.profilePic != null
+                            ? NetworkImage(user!.profilePic!)
+                            : const AssetImage(
+                                'assets/default_profile.png')) as ImageProvider,
                   ),
                 ),
-              );
-            },
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: cubit.signUpFirstName,
+                  decoration: const InputDecoration(labelText: 'First Name'),
+                ),
+                TextFormField(
+                  controller: cubit.signUpLastName,
+                  decoration: const InputDecoration(labelText: 'Last Name'),
+                ),
+                TextFormField(
+                  controller: cubit.signUpPhoneNumber,
+                  decoration: const InputDecoration(labelText: 'Phone Number'),
+                  keyboardType: TextInputType.phone,
+                ),
+                TextFormField(
+                  controller: cubit.signUpGender,
+                  decoration: const InputDecoration(labelText: 'Gender'),
+                ),
+                const SizedBox(height: 20),
+                if (state is UpdateProfileLoading)
+                  const CircularProgressIndicator()
+                else
+                  ElevatedButton(
+                    onPressed: () => cubit.updateProfile(),
+                    child: const Text('Update Profile'),
+                  ),
+              ],
+            ),
           ),
         );
-      }
+      },
     );
   }
-}*/
+}

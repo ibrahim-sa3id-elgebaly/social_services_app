@@ -14,6 +14,7 @@ import 'package:social_serveces_app/core/style/app_style.dart';
 import 'package:social_serveces_app/ui/authentications_screen/forgotten_password/forgotten_password_screen.dart';
 import 'package:social_serveces_app/ui/authentications_screen/login/login_screen.dart';
 import 'package:social_serveces_app/ui/authentications_screen/register/register_screen.dart';
+import 'package:social_serveces_app/ui/event_details_screen/event_details_screen.dart';
 import 'package:social_serveces_app/ui/home/home_screen.dart';
 import 'package:social_serveces_app/ui/home_tap/service/service_screen.dart';
 import 'package:social_serveces_app/ui/person_tap/about_us/about_us.dart';
@@ -25,6 +26,9 @@ import 'package:social_serveces_app/ui/splash_screens/first_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/fourth_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/second_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/third_screen.dart';
+
+import 'ui/authentications_screen/forgotten_password/reset_password.dart';
+import 'ui/service_details_screen/service_details_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -90,12 +94,13 @@ class MyApp extends StatelessWidget {
                     }
                     return supportedLocales.first;
                   },
-                  initialRoute: FirstScreen.routeName,
+                  initialRoute: HomeScreen.routeName,
                   routes: {
                     HomeScreen.routeName: (_) => const HomeScreen(),
                     LoginScreen.routeName: (_) =>  LoginScreen(),
                     RegisterScreen.routeName: (_) => RegisterScreen(),
-                    ForgottenPasswordScreen.routeName: (_) => const ForgottenPasswordScreen(),
+                    ForgottenPasswordScreen.routeName: (_) => ForgottenPasswordScreen(),
+                    ResetPasswordScreen.routeName: (_) => ResetPasswordScreen(),
                     ServiceScreen.routeName: (_) =>  ServiceScreen(),
                     FirstScreen.routeName: (_) => const FirstScreen(),
                     SecondScreen.routeName: (_) => const SecondScreen(),
@@ -105,7 +110,9 @@ class MyApp extends StatelessWidget {
                     SettingsScreen.routeName: (_) => const SettingsScreen(),
                     ContactUs.routeName: (_) =>  ContactUs(),
                     AboutUs.routeName: (_) => AboutUs(),
-                    EditProfileScreen.routeName:(_) =>  EditProfileScreen()
+                    EditProfileScreen.routeName:(_) =>  EditProfileScreen(),
+                    ServiceDetailsScreen.routeName:(_) =>  ServiceDetailsScreen(),
+                    EventDetailsScreen.routeName:(_) =>  EventDetailsScreen()
                   },
                 );
               },
