@@ -85,9 +85,30 @@ class EditProfileScreen extends StatelessWidget {
                   decoration: const InputDecoration(labelText: 'Phone Number'),
                   keyboardType: TextInputType.phone,
                 ),
-                TextFormField(
-                  controller: cubit.signUpGender,
-                  decoration: const InputDecoration(labelText: 'Gender'),
+                DropdownButtonFormField<String>(
+                  value: context.read<UserCubit>().signUpGender.text.isNotEmpty
+                      ? context.read<UserCubit>().signUpGender.text
+                      : null,
+                  decoration: InputDecoration(
+                    labelText: 'Gender',
+                    border: UnderlineInputBorder(),
+                    iconColor: Colors.black,
+                  ),items: ['Male', 'Female'].map((gender) {
+                  return DropdownMenuItem<String>(
+                    value: gender,
+                    child: Text(gender,
+                        style: TextStyle(color: Colors.black,
+                            fontSize: 15)),
+                  );}).toList(),
+                  onChanged: (value) {
+                    context.read<UserCubit>().signUpGender.text = value!;
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your gender';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
                 if (state is UpdateProfileLoading)
