@@ -12,7 +12,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = "SettingsScreen";
-
   const SettingsScreen({super.key});
 
   @override
@@ -21,7 +20,15 @@ class SettingsScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
             title: Text(AppLocalizations.of(context)!.settings),
+            titleTextStyle: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontSize:22.sp),
+            iconTheme: const IconThemeData(
+                color: Colors.white
+            ),
           ),
           body: Padding(
             padding: REdgeInsets.symmetric(vertical: 10, horizontal: 36),

@@ -14,6 +14,7 @@ class ServicesModel {
     required this.background,
   });
 
+  // طريقة للحصول على القائمة مع تمرير الـ context
   static List<ServicesModel> getCategories(BuildContext context) {
     return [
       ServicesModel(
