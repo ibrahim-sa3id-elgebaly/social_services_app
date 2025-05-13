@@ -39,9 +39,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }
       }, builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
-            backgroundColor: AppColors.primaryLightColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             title: const Text("Create Account"),
             centerTitle: true,
             titleTextStyle: const TextStyle(
@@ -153,17 +153,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01),
-                      CustomFormField(
-                        controller: context.read<UserCubit>().signUpGender,
-                        label: "Gender",
-                        keyboard: TextInputType.text,
-                        validate: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return "Please enter your gender";
-                          }
-                          return null;
-                        },
-                      ),
+                DropdownButtonFormField<String>(
+                  value: context.read<UserCubit>().signUpGender.text.isNotEmpty
+                      ? context.read<UserCubit>().signUpGender.text
+                      : null,
+                  decoration: InputDecoration(
+                    labelText: 'Gender',
+                    border: UnderlineInputBorder(),
+                    iconColor: Colors.black,
+                  ),items: ['Male', 'Female'].map((gender) {
+                  return DropdownMenuItem<String>(
+                    value: gender,
+                    child: Text(gender,
+                        style: TextStyle(color: Colors.black,
+                            fontSize: 15)),
+                  );}).toList(),
+                  onChanged: (value) {
+                    context.read<UserCubit>().signUpGender.text = value!;
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your gender';
+                    }
+                    return null;
+                  },
+                ),
+
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05),
                       state is SignUpLoading

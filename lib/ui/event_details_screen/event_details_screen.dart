@@ -25,7 +25,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFEFEFF4),
         appBar: AppBar(
-          backgroundColor: AppColors.primaryLightColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(category.title),
           titleTextStyle: const TextStyle(
             color: Colors.white,

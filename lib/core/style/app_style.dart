@@ -30,11 +30,16 @@ class AppStyle {
         color: Colors.black,
       ),
       titleLarge: TextStyle(
-          color: AppColors.secondaryLightColor,
+          color:AppColors.secondaryLightColor,
           fontSize: 26.sp,
-          fontWeight: FontWeight.w400),
+          fontWeight: FontWeight.w400
+      ),
       displayMedium: TextStyle(
-          fontSize: 20.sp, fontWeight: FontWeight.w600, color: Colors.black,),
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w600,
+          color: Colors.black
+      ),
+
     ),
     scaffoldBackgroundColor: AppColors.scaffoldLightColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
