@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import '../core/model/event_api_model/event_api_model.dart';
+import '../core/model/service_api_model/service_api_model.dart';
+import 'custom_button.dart';
 
 class EventCard extends StatelessWidget {
-  final EventApiModel eventModel;
+  final ServiceEventApiModel eventModel;
   final void Function() onPress;
 
   const EventCard({
@@ -60,11 +61,15 @@ class EventCard extends StatelessWidget {
                           children: [
                             Icon(Icons.location_on, size: 16, color: Colors.grey[600]),
                             const SizedBox(width: 4),
-                            Text(
-                              eventModel.location,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey[600],
+                            Expanded(
+                              child: Text(
+                                eventModel.location,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -88,6 +93,11 @@ class EventCard extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 12.h),
+              CustomButton(
+                label: "Show Details",
+                onClick: () => onPress,
+              )
             ],
           ),
         ),

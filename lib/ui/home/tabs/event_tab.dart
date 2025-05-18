@@ -57,7 +57,7 @@ class _EventTabState extends State<EventTab> {
                   child: TabBarView(
                     children: filters.map((event) {
                       return FutureBuilder(
-                        future: ApiManager.getEvent(event.id),
+                        future: ApiManager.getServiceEvent(event.id),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {

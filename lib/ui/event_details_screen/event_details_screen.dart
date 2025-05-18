@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import '../../core/model/event_api_model/event_api_model.dart';
 import '../../core/model/event_model.dart';
 import '../../core/model/service_api_model/service_api_model.dart';
 import '../../core/style/app_colors.dart';
@@ -19,7 +18,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
-    final event = args[0] as EventApiModel;
+    final event = args[0] as ServiceEventApiModel;
     final category = args[1] as EventModel;
 
     return Scaffold(

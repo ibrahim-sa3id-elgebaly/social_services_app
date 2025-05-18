@@ -23,15 +23,58 @@ class ServicesModel {
         background: Theme.of(context).colorScheme.onPrimary,
       ),
       ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.roadside_assistance,
-        image: "retouch_2025041205562848.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
         id: "aid/locations",
         title: AppLocalizations.of(context)!.aid_distribution,
         image: "donation4.png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+      ServicesModel(
+        id: "animal/locations",
+        title: AppLocalizations.of(context)!.animal_care,
+        image: "animal(3).png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+      ServicesModel(
+        id: "orphan-support/locations",
+        title: AppLocalizations.of(context)!.orphan_care,
+        image: "orphan2.png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+      ServicesModel(
+        id: "elderly-care/locations",
+        title: AppLocalizations.of(context)!.elderly_care,
+        image: "health5.png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+      ServicesModel(
+        id: "literacy-programs/locations",
+        title: AppLocalizations.of(context)!.literacy_programs,
+        image: "education3.png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+      ServicesModel(
+        id: "houseRenovation/locations",
+        title: AppLocalizations.of(context)!.home_renovation,
+        image: "house.png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+      ServicesModel(
+        id: "seasonalServices/locations",
+        title: AppLocalizations.of(context)!.seasonal_aid,
+        image: "donation4.png",
+        background: Theme.of(context).colorScheme.onPrimary,
+      ),
+
+    ];
+  }
+}
+
+
+/*
+      ServicesModel(
+        id: "blood/locations",
+        title: AppLocalizations.of(context)!.roadside_assistance,
+        image: "retouch_2025041205562848.png",
         background: Theme.of(context).colorScheme.onPrimary,
       ),
       ServicesModel(
@@ -48,28 +91,10 @@ class ServicesModel {
       ),
       ServicesModel(
         id: "blood/locations",
-        title: AppLocalizations.of(context)!.education_and_training,
-        image: "education3.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.health_and_awareness,
-        image: "health5.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.orphan_care,
-        image: "orphan2.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
-        id: "blood/locations",
         title: AppLocalizations.of(context)!.seasonal_aid,
         image: "science.png",
         background: Theme.of(context).colorScheme.onPrimary,
       ),
-    ];
-  }
-}
+
+
+ */

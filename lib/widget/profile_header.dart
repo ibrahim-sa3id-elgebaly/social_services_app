@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-typedef editFunction =void Function();
+
+typedef editFunction = void Function();
+
 class ProfileHeader extends StatelessWidget {
   editFunction onClick;
   String name;
   String email;
-  ProfileHeader({super.key,required this.name,required this.email,required this.onClick});
+
+  ProfileHeader({
+    super.key,
+    required this.name,
+    required this.email,
+    required this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,30 +22,22 @@ class ProfileHeader extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: AssetImage('assets/images/login_background.png'),
+            backgroundImage: AssetImage('assets/images/avatar.png'),
           ),
           SizedBox(width: 7.w),
           Column(
             children: [
               Text(
                 name,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.brown,
-                ),
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               Text(
                 email,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
+                style: Theme.of(context).textTheme.displaySmall,
               ),
             ],
           ),
-          SizedBox(width: 8.w),
+          SizedBox(width: 5.w),
           IconButton(
             icon: const Icon(Icons.edit, color: Colors.grey),
             onPressed: onClick,

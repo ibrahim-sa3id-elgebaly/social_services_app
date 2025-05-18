@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/ui/authentications_screen/forgotten_password/reset_password.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/cubit/user_state.dart';
+import '../../../widget/custom_button.dart';
+import '../../../widget/custom_form_field.dart';
 
 class ForgottenPasswordScreen extends StatelessWidget {
   static const String routeName = "forgotten password screen";
@@ -28,41 +31,37 @@ class ForgottenPasswordScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final cubit = context.read<UserCubit>();
         return Scaffold(
           appBar: AppBar(title: const Text('Forgot Password')),
           body: Padding(
             padding: REdgeInsets.all(16),
             child: Form(
-              key: _formKey,
+              key: context.read<UserCubit>().forgotPasswordFormKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextFormField(
-                    controller: cubit.forgotPasswordEmail,
-                    decoration: const InputDecoration(labelText: 'Email'),
-                    validator: (value) {
+                  CustomFormField(
+                    controller: context.read<UserCubit>().forgotPasswordEmail,
+                    label: "Email Address",
+                    keyboard: TextInputType.emailAddress,
+                    validate: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return "Please enter your email";
                       }
-                      if (!value.contains('@')) {
-                        return 'Please enter a valid email';
+                      if (!isValidEmail(value)) {
+                        return "enter valid email";
                       }
                       return null;
                     },
                   ),
                   const SizedBox(height: 20),
-                  if (state is ForgotPasswordLoading)
-                    const CircularProgressIndicator()
-                  else
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<UserCubit>().forgotPassword();
-                        }
-                      },
-                      child: const Text('Send Reset otp'),
-                    ),
+                  state is ForgotPasswordLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : CustomButton(
+                      label: "Send Reset otp",
+                      onClick: () {
+                        context.read<UserCubit>().forgotPassword();
+                      }),
                 ],
               ),
             ),

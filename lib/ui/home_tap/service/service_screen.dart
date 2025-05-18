@@ -33,7 +33,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
           iconTheme: IconThemeData(color: Colors.white),
         ),
         body: FutureBuilder(
-            future: ApiManager.getService(service.id),
+            future: ApiManager.getServiceEvent(service.id),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
@@ -57,7 +57,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                 );
               }
               var response = snapshot.data;
-              List<ServiceApiModel> articles = response ?? [];
+              List<ServiceEventApiModel> articles = response ?? [];
               return Padding(
                 padding: REdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 child: ListView.separated(

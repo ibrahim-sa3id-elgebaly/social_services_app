@@ -24,12 +24,9 @@ class _PersonTabState extends State<PersonTab> {
   @override
   void initState() {
     super.initState();
-
-    // ✅ اسحب الداتا من CacheHelper
     final firstName = CacheHelper().getData(key: 'firstName') ?? '';
     final lastName = CacheHelper().getData(key: 'lastName') ?? '';
     email = CacheHelper().getData(key: 'email') ?? '';
-
     setState(() {
       name = '$firstName $lastName';
     });
@@ -41,7 +38,6 @@ class _PersonTabState extends State<PersonTab> {
       padding: REdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Column(
         children: [
-          // ✅ بدل BlocBuilder/Consumer، اعرض الداتا مباشرة
           ProfileHeader(
             name: name,
             email: email,

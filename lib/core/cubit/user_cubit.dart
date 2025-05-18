@@ -33,6 +33,8 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController confirmNewPassword = TextEditingController();
   //----------------------------------------------------------------------
 
+  GlobalKey<FormState> forgotPasswordFormKey = GlobalKey();
+  GlobalKey<FormState> resetPasswordFormKey = GlobalKey();
   TextEditingController forgotPasswordEmail = TextEditingController();
   TextEditingController resetPasswordToken = TextEditingController();
   TextEditingController resetNewPassword = TextEditingController();
@@ -108,7 +110,6 @@ class UserCubit extends Cubit<UserState> {
         gender: signUpGender.text,
         profilePic: profilePic,
       );
-
       response.fold(
             (errMessage) => emit(UpdateProfileFailure(errMessage: errMessage)),
             (updatedUser) {
@@ -116,7 +117,6 @@ class UserCubit extends Cubit<UserState> {
             message: "Profile updated successfully",
             user: updatedUser,
           ));
-          // Optionally update the current user in state
           if (state is GetUserSuccess) {
             emit(GetUserSuccess(user: updatedUser));
           }
@@ -140,20 +140,18 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> resetPassword() async {
     emit(ResetPasswordLoading());
-
     final response = await userRepository.resetPassword(
       email: forgotPasswordEmail.text,
       otp: otpController.text,
       newPassword: resetNewPassword.text,
     );
-
     response.fold(
           (errMessage) => emit(ResetPasswordFailure(errMessage: errMessage)),
           (message) {
         // Clear fields after successful reset
-        forgotPasswordEmail.clear();
-        otpController.clear();
-        resetNewPassword.clear();
+        // forgotPasswordEmail.clear();
+        // otpController.clear();
+        // resetNewPassword.clear();
         emit(ResetPasswordSuccess(message: message));
       },
     );

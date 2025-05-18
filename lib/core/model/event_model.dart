@@ -24,7 +24,26 @@ class EventModel {
         id: "aid/events",
         title: AppLocalizations.of(context)!.aid_distribution,
       ),
+      EventModel(
+        id: "animal-welfare/events",
+        title: AppLocalizations.of(context)!.animal_care,
+      ),
+      EventModel(
+        id: "orphan-support/events",
+        title: AppLocalizations.of(context)!.orphan_care,
+      ),
+      EventModel(
+        id: "elderly-care/events",
+        title: AppLocalizations.of(context)!.elderly_care,
+      ),
+      EventModel(
+        id: "literacy-programs/events",
+        title: AppLocalizations.of(context)!.literacy_programs,
+      ),
+      EventModel(
+        id: "road/events",
+        title: AppLocalizations.of(context)!.roadside_assistance,
+      ),
     ];
   }
 }
-

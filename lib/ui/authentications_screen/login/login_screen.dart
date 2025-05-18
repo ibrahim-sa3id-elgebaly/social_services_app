@@ -18,7 +18,8 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocConsumer<UserCubit, UserState>(listener: (context, state) {
+      child: BlocConsumer<UserCubit, UserState>(
+          listener: (context, state) {
         if (state is SignInSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

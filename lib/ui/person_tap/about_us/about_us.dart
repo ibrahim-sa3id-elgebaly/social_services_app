@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/style/app_colors.dart';
+import 'package:flutter/widgets.dart';
 
 class AboutUs extends StatelessWidget {
   static const String routeName = "AboutUS";
@@ -10,90 +9,104 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(AppLocalizations.of(context)!.about_us),
-        centerTitle: true,
-        titleTextStyle: Theme.of(context)
-            .textTheme
-            .titleMedium!
-            .copyWith(fontSize: 22.sp),
-        iconTheme: const IconThemeData(
-            color: Colors.white
-        ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // App Logo
             CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/images/logo1.png'),
             ),
             SizedBox(height: 20),
-
-            // App Name
             Text(
               'social services',
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             SizedBox(height: 10),
-
-            // App Description
             Text(
               'ServiceConnect is a social platform that helps you find, share, and connect with local service providers. Whether you need a plumber, designer, or tutor — we make connecting easy, fast, and reliable.',
-              style: TextStyle(fontSize: 16, height: 1.5),
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 30),
-
-            // Team Section
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Our Team',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
             SizedBox(height: 10),
-
             ListTile(
-              leading: Icon(Icons.person),
+              leading: Icon(Icons.person,),
               title: Text('Nahla Selim'),
               subtitle: Text('Flutter Developer'),
+              iconColor: Theme.of(context).colorScheme.secondary,
+              titleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              subtitleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+
             ),
             ListTile(
               leading: Icon(Icons.person),
               title: Text('Ibrahim Elgebaly'),
               subtitle: Text('Flutter Developer'),
+              iconColor: Theme.of(context).colorScheme.secondary,
+              titleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              subtitleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
             ListTile(
               leading: Icon(Icons.person),
               title: Text('Mohamed Mahmoud'),
               subtitle: Text('Backend Developer'),
+              iconColor: Theme.of(context).colorScheme.secondary,
+              titleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              subtitleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
             SizedBox(height: 20),
-
-            // Contact Info
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Contact Us',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
             SizedBox(height: 10),
             ListTile(
               leading: Icon(Icons.email),
               title: Text('support@socialservices.com'),
+              iconColor: Theme.of(context).colorScheme.secondary,
+              titleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              subtitleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
             ListTile(
               leading: Icon(Icons.web),
               title: Text('www.serviceconnect.app'),
+              iconColor: Theme.of(context).colorScheme.secondary,
+              titleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              subtitleTextStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
           ],
         ),
@@ -101,4 +114,3 @@ class AboutUs extends StatelessWidget {
     );
   }
 }
-

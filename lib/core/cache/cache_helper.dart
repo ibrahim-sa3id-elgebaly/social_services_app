@@ -15,14 +15,16 @@ class CacheHelper {
 //! this method to put data in local database using key
 
   Future<bool> saveData({required String key, required dynamic value}) async {
+    if (value == null) {
+      throw Exception("Cannot save null value to cache for key: $key");
+    }
+
     if (value is bool) {
       return await sharedPreferences.setBool(key, value);
     }
-
     if (value is String) {
       return await sharedPreferences.setString(key, value);
     }
-
     if (value is int) {
       return await sharedPreferences.setInt(key, value);
     } else {

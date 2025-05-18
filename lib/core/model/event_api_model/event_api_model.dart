@@ -1,3 +1,4 @@
+/*
 
 class EventApiModel {
   final String id;
@@ -50,3 +51,4 @@ class EventApiModel {
     };
   }
 }
+*/

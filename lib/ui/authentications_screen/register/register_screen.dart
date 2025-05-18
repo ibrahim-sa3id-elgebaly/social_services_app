@@ -164,6 +164,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return null;
                         },
                       ),
+
+/*
+                      DropdownButtonFormField<String>(
+                        value: context.read<UserCubit>().signUpGender.text.isNotEmpty
+                            ? context.read<UserCubit>().signUpGender.text
+                            : null,
+                        decoration: InputDecoration(
+                          labelText: 'Gender',
+                          border: UnderlineInputBorder(),
+                          iconColor: Colors.black,
+                        ),items: ['Male', 'Female'].map((gender) {
+                        return DropdownMenuItem<String>(
+                          value: gender,
+                          child: Text(gender,
+                              style: TextStyle(color: Colors.black,
+                                  fontSize: 15)),
+                        );}).toList(),
+                        onChanged: (value) {
+                          context.read<UserCubit>().signUpGender.text = value!;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please select your gender';
+                          }
+                          return null;
+                        },
+                      ),
+*/
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05),
                       state is SignUpLoading

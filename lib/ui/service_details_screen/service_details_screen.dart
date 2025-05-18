@@ -19,7 +19,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
-    final service = args[0] as ServiceApiModel;
+    final service = args[0] as ServiceEventApiModel;
 
     return Scaffold(
         backgroundColor: const Color(0xFFEFEFF4),

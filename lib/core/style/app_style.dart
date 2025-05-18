@@ -24,17 +24,30 @@ class AppStyle {
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
+      displaySmall: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+        color: AppColors.secondaryLightColor,
+      ),
+      bodyMedium: const TextStyle(
+        fontSize: 16,
+        height: 1.5,
+        color: AppColors.secondaryLightColor,
+      ),
       labelMedium: TextStyle(
         fontSize: 18.sp,
         fontWeight: FontWeight.w400,
-        color: Colors.black,
+        color: AppColors.secondaryLightColor,
       ),
       titleLarge: TextStyle(
           color: AppColors.secondaryLightColor,
           fontSize: 26.sp,
-          fontWeight: FontWeight.w400),
+          fontWeight: FontWeight.w500),
       displayMedium: TextStyle(
-          fontSize: 20.sp, fontWeight: FontWeight.w600, color: Colors.black,),
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
     ),
     scaffoldBackgroundColor: AppColors.scaffoldLightColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -51,8 +64,7 @@ class AppStyle {
       ),
     ),
     bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: AppColors.scaffoldLightColor
-    ),
+        backgroundColor: AppColors.scaffoldLightColor),
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.deepPurple,
       primary: AppColors.primaryLightColor,
@@ -79,10 +91,20 @@ class AppStyle {
         fontWeight: FontWeight.w700,
         fontSize: 25,
       ),
+      bodyMedium: const TextStyle(
+        fontSize: 16,
+        height: 1.5,
+        color: AppColors.secondaryDarkColor,
+      ),
       titleMedium: TextStyle(
         fontSize: 18.sp,
         fontWeight: FontWeight.w400,
         color: Colors.white,
+      ),
+      displaySmall: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+        color: AppColors.secondaryDarkColor,
       ),
       labelMedium: TextStyle(
         fontSize: 18.sp,
@@ -92,9 +114,12 @@ class AppStyle {
       titleLarge: TextStyle(
           color: AppColors.secondaryDarkColor,
           fontSize: 26.sp,
-          fontWeight: FontWeight.w400),
+          fontWeight: FontWeight.w500),
       displayMedium: TextStyle(
-          fontSize: 20.sp, fontWeight: FontWeight.w600, color: Colors.white),
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
     ),
     scaffoldBackgroundColor: AppColors.scaffoldDarkColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -111,8 +136,7 @@ class AppStyle {
       ),
     ),
     bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: AppColors.scaffoldDarkColor
-    ),
+        backgroundColor: AppColors.scaffoldDarkColor),
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.deepPurple,
       primary: AppColors.primaryDarkColor,

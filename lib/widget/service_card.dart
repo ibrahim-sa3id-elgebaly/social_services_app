@@ -5,7 +5,7 @@ import 'package:social_serveces_app/core/model/services_model.dart';
 import '../core/model/service_api_model/service_api_model.dart';
 
 class ServiceCard extends StatelessWidget {
-  final ServiceApiModel serviceApiModel;
+  final ServiceEventApiModel serviceApiModel;
   final ServicesModel serviceModel;
   final void Function() onPress;
 

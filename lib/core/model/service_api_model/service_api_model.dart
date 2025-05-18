@@ -1,5 +1,5 @@
 
-class ServiceApiModel {
+class ServiceEventApiModel {
   final String id;
   final String title;
   final String description;
@@ -10,7 +10,7 @@ class ServiceApiModel {
   final DateTime createdAt;
   final int v;
 
-  ServiceApiModel({
+  ServiceEventApiModel({
     required this.id,
     required this.title,
     required this.description,
@@ -22,8 +22,8 @@ class ServiceApiModel {
     required this.v,
   });
 
-  factory ServiceApiModel.fromJson(Map<String, dynamic> json) {
-    return ServiceApiModel(
+  factory ServiceEventApiModel.fromJson(Map<String, dynamic> json) {
+    return ServiceEventApiModel(
       id: json['_id'],
       title: json['title'],
       description: json['description'],
@@ -32,7 +32,7 @@ class ServiceApiModel {
       formattedTime: json['time'],
       contactNumber: json['contactNumber'],
       createdAt: DateTime.parse(json['createdAt']),
-      v: json['__v'],
+      v: json['__v'] as int? ?? 0,
     );
   }
 

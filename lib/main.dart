@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
                     }
                     return supportedLocales.first;
                   },
-                  initialRoute: HomeScreen.routeName,
+                  initialRoute: FirstScreen.routeName,
                   routes: {
                     HomeScreen.routeName: (_) => const HomeScreen(),
                     LoginScreen.routeName: (_) =>  LoginScreen(),

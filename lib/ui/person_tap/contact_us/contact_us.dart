@@ -5,6 +5,7 @@ import '../../../core/style/app_colors.dart';
 
 class ContactUs extends StatefulWidget {
   static const String routeName = "ContactUS";
+
   @override
   _ContactUsScreenState createState() => _ContactUsScreenState();
 }
@@ -32,26 +33,16 @@ class _ContactUsScreenState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Text('Contact Us'),
-        centerTitle: true,
-        titleTextStyle: Theme.of(context)
-            .textTheme
-            .titleMedium!
-            .copyWith(fontSize: 22.sp),
-        iconTheme: const IconThemeData(
-            color: Colors.white
-        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
               Text(
                 'We’d love to hear from you!',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.displayMedium,
               ),
               SizedBox(height: 10),
               Text(
@@ -59,8 +50,6 @@ class _ContactUsScreenState extends State<ContactUs> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 30),
-
-              // Contact Form
               Form(
                 key: _formKey,
                 child: Column(
@@ -69,16 +58,20 @@ class _ContactUsScreenState extends State<ContactUs> {
                       controller: _nameController,
                       decoration: InputDecoration(
                         labelText: 'Your Name',
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) =>
-                      value!.isEmpty ? 'Name is required' : null,
+                          value!.isEmpty ? 'Name is required' : null,
                     ),
                     SizedBox(height: 15),
                     TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'Your Email',
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
@@ -96,45 +89,57 @@ class _ContactUsScreenState extends State<ContactUs> {
                       maxLines: 5,
                       decoration: InputDecoration(
                         labelText: 'Your Message',
+                        labelStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) =>
-                      value!.isEmpty ? 'Message cannot be empty' : null,
+                          value!.isEmpty ? 'Message cannot be empty' : null,
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _submitForm,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 30, vertical: 12),
                         child: Text('Send Message'),
                       ),
                     ),
                   ],
                 ),
               ),
-
               SizedBox(height: 40),
-
-              // Contact Info Section
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Or Contact Us Directly:',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
               SizedBox(height: 15),
               ListTile(
                 leading: Icon(Icons.email),
                 title: Text('support@socialservices.com'),
+                iconColor: Theme.of(context).colorScheme.secondary,
+                titleTextStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
               ListTile(
                 leading: Icon(Icons.phone),
                 title: Text('+20 (155) 571-7864'),
+                iconColor: Theme.of(context).colorScheme.secondary,
+                titleTextStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
               ListTile(
                 leading: Icon(Icons.location_on),
                 title: Text('123 Service Lane, Tech City, USA'),
+                iconColor: Theme.of(context).colorScheme.secondary,
+                titleTextStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
               ),
             ],
           ),
@@ -143,7 +148,6 @@ class _ContactUsScreenState extends State<ContactUs> {
     );
   }
 }
-
 
 /*
 import 'package:flutter/material.dart';

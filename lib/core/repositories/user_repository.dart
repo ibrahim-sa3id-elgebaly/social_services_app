@@ -30,7 +30,24 @@ class UserRepository {
       final user = SignInModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user.token.toString());
       CacheHelper().saveData(key: ApiKey.token, value: user.token);
-      CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
+      if (decodedToken[ApiKey.id] != null) {
+        CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
+      }
+      if (decodedToken[ApiKey.firstName] != null) {
+        CacheHelper().saveData(key: ApiKey.firstName, value: decodedToken[ApiKey.firstName]);
+      }
+      if (decodedToken[ApiKey.lastName] != null) {
+        CacheHelper().saveData(key: ApiKey.lastName, value: decodedToken[ApiKey.lastName]);
+      }
+      if (decodedToken[ApiKey.email] != null) {
+        CacheHelper().saveData(key: ApiKey.email, value: decodedToken[ApiKey.email]);
+      }
+      if (decodedToken[ApiKey.phone] != null) {
+        CacheHelper().saveData(key: ApiKey.phone, value: decodedToken[ApiKey.phone]);
+      }
+      if (decodedToken[ApiKey.gender] != null) {
+        CacheHelper().saveData(key: ApiKey.gender, value: decodedToken[ApiKey.gender]);
+      }
       return Right(user);
     } on ServerException catch (e) {
       return Left(e.errModel.errorMessage);

@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/cubit/user_state.dart';
+import '../../../widget/custom_button.dart';
+import '../../../widget/custom_form_field.dart';
 
 class EditProfileScreen extends StatelessWidget {
   static const String routeName = "edit profile screen";
@@ -27,77 +29,83 @@ class EditProfileScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final cubit = context.read<UserCubit>();
         final user = (state is GetUserSuccess) ? state.user : null;
-
         if (user != null) {
-          cubit.signUpFirstName.text = user.firstName!;
-          cubit.signUpLastName.text = user.lastName!;
-          cubit.signUpPhoneNumber.text = user.mobileNumber!;
-          cubit.signUpGender.text = user.gender!;
+          context.read<UserCubit>().signUpFirstName.text = user.firstName;
+          context.read<UserCubit>().signUpLastName.text = user.lastName;
+          context.read<UserCubit>().signUpPhoneNumber.text = user.mobileNumber;
+          context.read<UserCubit>().signUpGender.text = user.gender;
         }
-
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
             title: const Text('Update Profile'),
-            titleTextStyle: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(fontSize: 22.sp),
-            iconTheme: const IconThemeData(
-                color: Colors.white
-            ),
           ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    final image = await ImagePicker()
-                        .pickImage(source: ImageSource.gallery);
-                    if (image != null) {
-                      cubit.uploadProfilePic(image);
-                    }
-                  },
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundImage: cubit.profilePic != null
-                        ? FileImage(File(cubit.profilePic!.path))
-                        : (user?.profilePic != null
-                            ? NetworkImage(user!.profilePic!)
-                            : const AssetImage(
-                                'assets/default_profile.png')) as ImageProvider,
+          body: Padding(
+            padding: REdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () async {
+                      final image = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      if (image != null) {
+                        context.read<UserCubit>().uploadProfilePic(image);
+                      }
+                    },
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: context.read<UserCubit>().profilePic != null
+                          ? FileImage(File(context.read<UserCubit>().profilePic!.path))
+                          : (user?.profilePic != null
+                              ? NetworkImage(user!.profilePic!)
+                              : const AssetImage(
+                                  'assets/images/avatar.png')) as ImageProvider,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: cubit.signUpFirstName,
-                  decoration: const InputDecoration(labelText: 'First Name'),
-                ),
-                TextFormField(
-                  controller: cubit.signUpLastName,
-                  decoration: const InputDecoration(labelText: 'Last Name'),
-                ),
-                TextFormField(
-                  controller: cubit.signUpPhoneNumber,
-                  decoration: const InputDecoration(labelText: 'Phone Number'),
-                  keyboardType: TextInputType.phone,
-                ),
-                TextFormField(
-                  controller: cubit.signUpGender,
-                  decoration: const InputDecoration(labelText: 'Gender'),
-                ),
-                const SizedBox(height: 20),
-                if (state is UpdateProfileLoading)
-                  const CircularProgressIndicator()
-                else
-                  ElevatedButton(
-                    onPressed: () => cubit.updateProfile(),
-                    child: const Text('Update Profile'),
+                  const SizedBox(height: 20),
+                  CustomFormField(
+                    controller: context.read<UserCubit>().signUpFirstName,
+                    label: "First Name",
+                    keyboard: TextInputType.name,
+                    validate: (value) {
+                      return null;
+                    },
                   ),
-              ],
+                  CustomFormField(
+                    controller: context.read<UserCubit>().signUpLastName,
+                    label: "Last Name",
+                    keyboard: TextInputType.name,
+                    validate: (value) {
+                      return null;
+                    },
+                  ),
+                  CustomFormField(
+                    controller: context.read<UserCubit>().signUpPhoneNumber,
+                    label: "Phone Number",
+                    keyboard: TextInputType.phone,
+                    validate: (value) {
+                      return null;
+                    },
+                  ),
+                  CustomFormField(
+                    controller: context.read<UserCubit>().signUpGender,
+                    label: "Gender",
+                    keyboard: TextInputType.name,
+                    validate: (value) {
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  state is SignInLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : CustomButton(
+                      label: "Update Profile",
+                      onClick: () {
+                          context.read<UserCubit>().updateProfile();
+                      }),
+                ],
+              ),
             ),
           ),
         );

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/cubit/user_state.dart';
+import '../../../widget/custom_button.dart';
+import '../../../widget/custom_form_field.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   static const String routeName = "reset password screen";
@@ -26,28 +30,37 @@ class ResetPasswordScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final cubit = context.read<UserCubit>();
-
         return Scaffold(
-          appBar: AppBar(title: const Text('Reset Password')),
+          appBar: AppBar(
+            title: const Text('Reset Password'),
+          ),
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: REdgeInsets.all(16),
             child: Form(
-              key: _formKey,
+              key: context.read<UserCubit>().resetPasswordFormKey  ,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Email field (pre-filled from forgot password screen)
-                  TextFormField(
-                    controller: cubit.forgotPasswordEmail,
-                    decoration: const InputDecoration(labelText: 'Email'),
-                    readOnly: true, // Make it read-only as it comes from forgot password
+                  CustomFormField(
+                    controller: context.read<UserCubit>().forgotPasswordEmail,
+                    label: "Email Address",
+                    keyboard: TextInputType.emailAddress,
+                    validate: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your email";
+                      }
+                      if (!isValidEmail(value)) {
+                        return "enter valid email";
+                      }
+                      return null;
+                    },
                   ),
                   // OTP field
-                  TextFormField(
-                    controller: cubit.otpController,
-                    decoration: const InputDecoration(labelText: 'OTP Code'),
-                    validator: (value) {
+                  CustomFormField(
+                    controller: context.read<UserCubit>().otpController,
+                    label: "OTP Code",
+                    keyboard: TextInputType.number,
+                    validate: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter the OTP code';
                       }
@@ -56,35 +69,38 @@ class ResetPasswordScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
                   ),
                   // New Password field
-                  TextFormField(
-                    controller: cubit.resetNewPassword,
-                    decoration: const InputDecoration(labelText: 'New Password'),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a new password';
+                  CustomFormField(
+                    controller: context.read<UserCubit>().resetNewPassword,
+                    isPassword: true,
+                    label: " New Password",
+                    keyboard: TextInputType.visiblePassword,
+                    validate: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Please enter your password";
                       }
                       if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
+                        return "password should be at least 6";
                       }
                       return null;
                     },
                   ),
                   const SizedBox(height: 20),
-                  if (state is ResetPasswordLoading)
-                    const CircularProgressIndicator()
-                  else
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<UserCubit>().resetPassword();
-                        }
-                      },
-                      child: const Text('Reset Password'),
-                    ),
+                  state is ResetPasswordLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : CustomButton(
+                          label: "Reset Password",
+                          onClick: () {
+                            if (context
+                                    .read<UserCubit>()
+                                    .resetPasswordFormKey
+                                    .currentState
+                                    ?.validate() ==
+                                true) {
+                              context.read<UserCubit>().resetPassword();
+                            }
+                          }),
                 ],
               ),
             ),

@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/providers/settings_cubit.dart';
 import '../../../core/providers/settings_state.dart';
-import '../../../core/style/app_colors.dart';
 import '../../../widget/language_bottom_sheet.dart';
 import '../../../widget/theme_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
