@@ -19,7 +19,7 @@ class ServiceItem extends StatelessWidget {
         margin: REdgeInsets.only(bottom: 16),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
-            side: BorderSide(color: Colors.amber, width: 2.w)),
+            side: BorderSide(color: Theme.of(context).colorScheme.onPrimary, width: 2.w,)),
         child: Padding(
           padding: REdgeInsets.all(12),
           child: Column(
@@ -28,20 +28,16 @@ class ServiceItem extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(width: 12),
-                  // Event details
+                  SizedBox(width: 12.w),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           '''${serviceApiModel.title}''',
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 18.sp),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4.h),
                         Row(
                           children: [
                             Icon(Icons.location_on,
@@ -50,7 +46,7 @@ class ServiceItem extends StatelessWidget {
                               child: Text(
                                 serviceApiModel.location,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 14.sp,
                                   color: Colors.grey[600],
                                 ),
                                 maxLines: 1,
@@ -59,7 +55,7 @@ class ServiceItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4.h),
                         Row(
                           children: [
                             Icon(Icons.access_time,
@@ -67,7 +63,7 @@ class ServiceItem extends StatelessWidget {
                             Text(
                               serviceApiModel.formattedTime,
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 color: Colors.grey[600],
                               ),
                             ),

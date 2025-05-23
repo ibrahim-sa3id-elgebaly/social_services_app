@@ -12,6 +12,8 @@ import '../login/login_screen.dart';
 class RegisterScreen extends StatefulWidget {
   static const String routeName = "Register";
 
+  const RegisterScreen({super.key});
+
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
@@ -41,12 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor: AppColors.primaryLightColor,
             title: const Text("Create Account"),
-            centerTitle: true,
-            titleTextStyle: const TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-            iconTheme: IconThemeData(color: Colors.white),
           ),
           body: Center(
             child: Padding(
@@ -164,7 +161,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return null;
                         },
                       ),
-
 /*
                       DropdownButtonFormField<String>(
                         value: context.read<UserCubit>().signUpGender.text.isNotEmpty
@@ -218,5 +214,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }),
     );
   }
-
 }

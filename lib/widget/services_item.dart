@@ -28,7 +28,7 @@ class ServicesItem extends StatelessWidget {
           ),
           child: Container(
             constraints: BoxConstraints(
-              minHeight: 180.h,  // ارتفاع أدنى للحاوية
+              minHeight: 180.h,
               maxWidth: constraints.maxWidth,
             ),
             decoration: BoxDecoration(
@@ -41,19 +41,17 @@ class ServicesItem extends StatelessWidget {
               ),
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min, // مهم لمنع التجاوز
+              mainAxisSize: MainAxisSize.min,
               children: [
-                // الصورة مع تحديد حجم نسبي
                 SizedBox(
-                  height: constraints.maxHeight * 0.6, // 60% من الارتفاع
-                  width: constraints.maxWidth * 0.8,    // 80% من العرض
+                  height: constraints.maxHeight * 0.6,
+                  width: constraints.maxWidth * 0.8,
                   child: Image.asset(
                     "assets/images/${servicesModel.image}",
                     fit: BoxFit.contain,
                   ),
                 ),
                 SizedBox(height: 10.h),
-                // النص مع تحديد عدد الأسطر
                 Flexible(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -69,7 +67,7 @@ class ServicesItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h), // مسافة إضافية في الأسفل
+                SizedBox(height: 10.h),
               ],
             ),
           ),
@@ -78,55 +76,3 @@ class ServicesItem extends StatelessWidget {
     );
   }
 }
-
-/*
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../core/model/services_model.dart';
-
-class ServicesItem extends StatelessWidget {
-  final ServicesModel categoriesModel;
-  final int index;
-  final void Function(String category) onPress;
-
-  const ServicesItem({
-    super.key,
-    required this.categoriesModel,
-    required this.index,
-    required this.onPress,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        onPress(categoriesModel.id);
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            color: categoriesModel.background,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.r),
-                topRight: Radius.circular(25.r),
-                bottomLeft: Radius.circular(index.isEven ? 25.r : 0),
-                bottomRight: Radius.circular(index.isOdd ? 25.r : 0))),
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/images/${categoriesModel.image}",
-              height: 116.h,
-              width: 132.w,
-            ),
-            SizedBox(height: 10.h),
-            Text(
-              categoriesModel.title,
-              style: Theme.of(context).textTheme.titleMedium,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/

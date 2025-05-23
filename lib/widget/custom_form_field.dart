@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 typedef ValidatorType =String? Function(String?);
 class CustomFormField extends StatefulWidget {
   String label;
@@ -49,7 +51,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
                       ? Icons.visibility_off_outlined
                       : Icons.visibility_outlined,
                   color: Theme.of(context).colorScheme.primary,
-                  size: 25,
+                  size: 25.r,
                 ))
             : null,
         labelText: widget.label,

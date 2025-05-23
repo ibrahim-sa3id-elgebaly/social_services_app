@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/core/cubit/user_state.dart';
+import '../../../core/cache/cache_helper.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/cubit/user_cubit.dart';
 import '../../../core/style/app_colors.dart';
@@ -15,12 +16,15 @@ import '../register/register_screen.dart';
 class LoginScreen extends StatelessWidget {
   static const String routeName = "login";
 
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
-          listener: (context, state) {
+          listener: (context, state) async{
         if (state is SignInSuccess) {
+          await CacheHelper.saveInitialRoute(HomeScreen.routeName);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text("Login Successful"),
@@ -42,12 +46,7 @@ class LoginScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor: AppColors.primaryLightColor,
             title: const Text("Login"),
-            centerTitle: true,
-            titleTextStyle: const TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-            iconTheme: const IconThemeData(color: Colors.white),
           ),
           body: Center(
             child: Padding(
@@ -91,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 55.h),
                       state is SignInLoading
-                          ? Center(child: CircularProgressIndicator())
+                          ? const Center(child: CircularProgressIndicator())
                           : CustomButton(
                               label: "Login",
                               onClick: () {

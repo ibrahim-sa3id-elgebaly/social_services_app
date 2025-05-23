@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../core/style/app_colors.dart';
 
 class EventDetailWidget extends StatelessWidget {
@@ -11,7 +11,7 @@ class EventDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: REdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -20,10 +20,12 @@ class EventDetailWidget extends StatelessWidget {
             size: 28,
             color: AppColors.secondaryLightColor,
           ),
-          SizedBox(height: 4),
+          SizedBox(height: 4.h),
           Text(
             value,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
+
         ],
       ),
     );

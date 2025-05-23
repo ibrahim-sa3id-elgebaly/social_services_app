@@ -10,9 +10,7 @@ import '../../../widget/custom_form_field.dart';
 class ResetPasswordScreen extends StatelessWidget {
   static const String routeName = "reset password screen";
 
-  ResetPasswordScreen({super.key});
-
-  final _formKey = GlobalKey<FormState>();
+  const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +86,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   state is ResetPasswordLoading
-                      ? Center(child: CircularProgressIndicator())
+                      ? const Center(child: CircularProgressIndicator())
                       : CustomButton(
                           label: "Reset Password",
                           onClick: () {

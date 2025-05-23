@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SelectedItem extends StatelessWidget {
   String selected;
-  SelectedItem(this.selected);
+  SelectedItem(this.selected, {super.key});
 
   @override
   Widget build(BuildContext context) {

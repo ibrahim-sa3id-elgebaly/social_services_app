@@ -4,8 +4,40 @@ class CacheHelper {
   static late SharedPreferences sharedPreferences;
 
 //! Here The Initialize of cache .
+  static Future<void> init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+/*
   init() async {
     sharedPreferences = await SharedPreferences.getInstance();
+  }
+*/
+
+  // Theme methods
+  static Future<bool> saveThemeMode(String themeMode) async {
+    return await sharedPreferences.setString('themeMode', themeMode);
+  }
+
+  static String? getThemeMode() {
+    return sharedPreferences.getString('themeMode');
+  }
+
+  // Language methods
+  static Future<bool> saveLanguage(String languageCode) async {
+    return await sharedPreferences.setString('language', languageCode);
+  }
+
+  static String? getLanguage() {
+    return sharedPreferences.getString('language');
+  }
+
+  // Initial route methods
+  static Future<bool> saveInitialRoute(String routeName) async {
+    return await sharedPreferences.setString('initialRoute', routeName);
+  }
+
+  static String? getInitialRoute() {
+    return sharedPreferences.getString('initialRoute');
   }
 
   String? getDataString({required String key}) {

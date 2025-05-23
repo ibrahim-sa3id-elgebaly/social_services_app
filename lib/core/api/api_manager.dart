@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:social_serveces_app/core/model/event_api_model/event_api_model.dart';
 import '../model/service_api_model/service_api_model.dart';
 import 'api_dio/end_ponits.dart';
 

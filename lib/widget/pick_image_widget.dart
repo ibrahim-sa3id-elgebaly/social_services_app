@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../core/cubit/user_cubit.dart';
 import '../core/cubit/user_state.dart';
 
@@ -17,8 +17,8 @@ class PickImageWidget extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return SizedBox(
-          width: 130,
-          height: 130,
+          width: 130.w,
+          height: 130.h,
           child: context.read<UserCubit>().profilePic == null
               ? CircleAvatar(
             backgroundColor: Colors.grey.shade200,
@@ -31,11 +31,11 @@ class PickImageWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () async {},
                     child: Container(
-                      height: 50,
-                      width: 50,
+                      height: 50.h,
+                      width: 50.w,
                       decoration: BoxDecoration(
                         color: Colors.blue.shade400,
-                        border: Border.all(color: Colors.white, width: 3),
+                        border: Border.all(color: Colors.white, width: 3.w),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: GestureDetector(

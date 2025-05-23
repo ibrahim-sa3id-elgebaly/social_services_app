@@ -22,7 +22,7 @@ class _FourthScreenState extends State<FourthScreen> {
         child: Column(
           children: [
             SizedBox(height: 55.h),
-            SkipButton(onPressed: Skip,text: "Skip"),
+            SkipButton(onPressed: skip,text: "Skip"),
             SizedBox(height: 30.h),
             SizedBox(
               width: 364.w,
@@ -40,9 +40,9 @@ class _FourthScreenState extends State<FourthScreen> {
     );
   }
   next(){
-    Navigator.pushNamed(context, FifthhScreen.routeName);
+    Navigator.pushNamed(context, FifthScreen.routeName);
   }
-  Skip(){
+  skip(){
     Navigator.pushNamed(context, LoginScreen.routeName);
   }
 }

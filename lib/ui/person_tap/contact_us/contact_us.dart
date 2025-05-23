@@ -6,6 +6,8 @@ import '../../../core/style/app_colors.dart';
 class ContactUs extends StatefulWidget {
   static const String routeName = "ContactUS";
 
+  const ContactUs({super.key});
+
   @override
   _ContactUsScreenState createState() => _ContactUsScreenState();
 }
@@ -20,7 +22,7 @@ class _ContactUsScreenState extends State<ContactUs> {
     if (_formKey.currentState!.validate()) {
       // You can integrate API/email sending logic here
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Message Sent!')),
+        const SnackBar(content: Text('Message Sent!')),
       );
 
       _nameController.clear();
@@ -36,7 +38,7 @@ class _ContactUsScreenState extends State<ContactUs> {
         title: const Text('Contact Us'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -44,12 +46,12 @@ class _ContactUsScreenState extends State<ContactUs> {
                 'We’d love to hear from you!',
                 style: Theme.of(context).textTheme.displayMedium,
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Fill out the form below or reach us through the contact info.',
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Form(
                 key: _formKey,
                 child: Column(
@@ -60,30 +62,32 @@ class _ContactUsScreenState extends State<ContactUs> {
                         labelText: 'Your Name',
                         labelStyle: TextStyle(
                             color: Theme.of(context).colorScheme.secondary),
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                       ),
                       validator: (value) =>
                           value!.isEmpty ? 'Name is required' : null,
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'Your Email',
                         labelStyle: TextStyle(
                             color: Theme.of(context).colorScheme.secondary),
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty)
+                        if (value == null || value.isEmpty) {
                           return 'Email is required';
+                        }
                         final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                        if (!emailRegex.hasMatch(value))
+                        if (!emailRegex.hasMatch(value)) {
                           return 'Enter a valid email';
+                        }
                         return null;
                       },
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     TextFormField(
                       controller: _messageController,
                       maxLines: 5,
@@ -91,24 +95,24 @@ class _ContactUsScreenState extends State<ContactUs> {
                         labelText: 'Your Message',
                         labelStyle: TextStyle(
                             color: Theme.of(context).colorScheme.secondary),
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                       ),
                       validator: (value) =>
                           value!.isEmpty ? 'Message cannot be empty' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _submitForm,
                       child: Padding(
                         padding:
                             REdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                        child: Text('Send Message'),
+                        child: const Text('Send Message'),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -116,26 +120,26 @@ class _ContactUsScreenState extends State<ContactUs> {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               ListTile(
-                leading: Icon(Icons.email),
-                title: Text('support@socialservices.com'),
+                leading: const Icon(Icons.email),
+                title: const Text('support@socialservices.com'),
                 iconColor: Theme.of(context).colorScheme.secondary,
                 titleTextStyle: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.phone),
-                title: Text('+20 (155) 571-7864'),
+                leading: const Icon(Icons.phone),
+                title: const Text('+20 (155) 571-7864'),
                 iconColor: Theme.of(context).colorScheme.secondary,
                 titleTextStyle: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.location_on),
-                title: Text('123 Service Lane, Tech City, USA'),
+                leading: const Icon(Icons.location_on),
+                title: const Text('123 Service Lane, Tech City, USA'),
                 iconColor: Theme.of(context).colorScheme.secondary,
                 titleTextStyle: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
@@ -148,24 +152,3 @@ class _ContactUsScreenState extends State<ContactUs> {
     );
   }
 }
-
-/*
-import 'package:flutter/material.dart';
-
-class ContactUs extends StatelessWidget {
-  static const String routeName = "ContactUS";
-  const ContactUs({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Contact Us"),
-      ),
-      body: Container(
-        color: Colors.red,
-      ),
-    );
-  }
-}
-*/

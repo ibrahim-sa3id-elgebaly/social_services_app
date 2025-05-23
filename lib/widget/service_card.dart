@@ -35,7 +35,7 @@ class ServiceCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(width: 5),
+              SizedBox(width: 5.w),
               // Event details
               Expanded(
                 child: Column(
@@ -43,36 +43,36 @@ class ServiceCard extends StatelessWidget {
                   children: [
                     Text(
                       serviceApiModel.title,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: TextStyle(
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Row(
                       children: [
                         Icon(Icons.location_on,
                             size: 16, color: Colors.grey[600]),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4.w),
                         Text(
                           serviceApiModel.location,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             color: Colors.grey[600],
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Row(
                       children: [
                         Icon(Icons.access_time,
                             size: 16, color: Colors.grey[600]),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4.w),
                         Text(
                           serviceApiModel.formattedTime,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             color: Colors.grey[600],
                           ),
                         ),
@@ -82,7 +82,7 @@ class ServiceCard extends StatelessWidget {
                       children: [
                         Icon(Icons.date_range_rounded,
                             size: 16, color: Colors.grey[600]),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4.w),
                         Text(
                           DateFormat('"dd/MM/yyyy"').format(DateTime.parse(
                               serviceApiModel.date.toString())),

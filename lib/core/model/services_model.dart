@@ -68,33 +68,3 @@ class ServicesModel {
     ];
   }
 }
-
-
-/*
-      ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.roadside_assistance,
-        image: "retouch_2025041205562848.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.home_renovation,
-        image: "house.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.disaster_relief,
-        image: "environment.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-      ServicesModel(
-        id: "blood/locations",
-        title: AppLocalizations.of(context)!.seasonal_aid,
-        image: "science.png",
-        background: Theme.of(context).colorScheme.onPrimary,
-      ),
-
-
- */

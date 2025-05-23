@@ -23,7 +23,7 @@ class _SecondScreenState extends State<SecondScreen> {
         child: Column(
           children: [
             SizedBox(height: 55.h),
-            SkipButton(onPressed: Skip, text: "Skip"),
+            SkipButton(onPressed: skip, text: "Skip"),
             SizedBox(height: 30.h),
             SizedBox(
               width: 364.w,
@@ -45,7 +45,7 @@ class _SecondScreenState extends State<SecondScreen> {
     Navigator.pushNamed(context, ThirdScreen.routeName);
   }
 
-  Skip() {
+  skip() {
     Navigator.pushNamed(context, LoginScreen.routeName);
   }
 }

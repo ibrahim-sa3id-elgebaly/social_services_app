@@ -4,16 +4,16 @@ import '../../widget/custom_button.dart';
 import '../authentications_screen/login/login_screen.dart';
 import '../authentications_screen/register/register_screen.dart';
 
-class FifthhScreen extends StatefulWidget {
+class FifthScreen extends StatefulWidget {
   static const String routeName = "fifth_screen";
 
-  const FifthhScreen({super.key});
+  const FifthScreen({super.key});
 
   @override
-  State<FifthhScreen> createState() => _FifthhScreenState();
+  State<FifthScreen> createState() => _FifthScreenState();
 }
 
-class _FifthhScreenState extends State<FifthhScreen> {
+class _FifthScreenState extends State<FifthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,17 +36,24 @@ class _FifthhScreenState extends State<FifthhScreen> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 30.h),
-            CustomButton(label: "Login", onClick: (){
-              Navigator.pushNamed(context, LoginScreen.routeName);
-            }),
+            CustomButton(
+                label: "Login",
+                onClick: () {
+                  Navigator.pushNamed(context, LoginScreen.routeName);
+                }),
             SizedBox(height: 20.h),
-            CustomButton(label: "Create Account", onClick: (){
-              Navigator.pushNamed(context, RegisterScreen.routeName);
-            }),
+            CustomButton(
+                label: "Create Account",
+                onClick: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RegisterScreen.routeName,
+                        (Route<dynamic> route) => false,
+                  );
+                }),
           ],
         ),
       ),
     );
   }
-
 }

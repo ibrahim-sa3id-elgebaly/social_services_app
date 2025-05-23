@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/providers/settings_cubit.dart';
-import '../core/providers/settings_state.dart';
+import '../../core/settings/settings_cubit.dart';
+import '../core/settings/settings_state.dart';
 import 'selected_item.dart';
 import 'unselected_item.dart';
 

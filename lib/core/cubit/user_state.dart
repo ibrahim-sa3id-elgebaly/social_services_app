@@ -88,3 +88,12 @@ final class ResetPasswordFailure extends UserState {
   ResetPasswordFailure({required this.errMessage});
 }
 
+final class LogoutLoading extends UserState {}
+
+final class LogoutSuccess extends UserState {}
+
+final class LogoutFailure extends UserState {
+  final String errMessage;
+  LogoutFailure({required this.errMessage});
+}
+

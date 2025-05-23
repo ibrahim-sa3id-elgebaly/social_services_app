@@ -22,7 +22,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
         child: Column(
           children: [
             SizedBox(height: 55.h),
-            SkipButton(onPressed: Skip,text: "Skip"),
+            SkipButton(onPressed: skip,text: "Skip"),
             SizedBox(height: 30.h),
             SizedBox(
               width: 364.w,
@@ -42,7 +42,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
   next(){
     Navigator.pushNamed(context, FourthScreen.routeName);
   }
-  Skip(){
+  skip(){
     Navigator.pushNamed(context, LoginScreen.routeName);
   }
 }

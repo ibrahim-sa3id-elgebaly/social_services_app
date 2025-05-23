@@ -19,15 +19,3 @@ class SettingsState {
     );
   }
 }
-
-/*
-class SettingsState {}
-
-final class ThemeDark extends SettingsState {}
-
-final class ThemeLight extends SettingsState {}
-
-final class LanguageArabic extends SettingsState {}
-
-final class LanguageEnglish extends SettingsState {}
-*/

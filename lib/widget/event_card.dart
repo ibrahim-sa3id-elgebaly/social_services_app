@@ -22,7 +22,7 @@ class EventCard extends StatelessWidget {
         margin: REdgeInsets.only(bottom: 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),
-          side: BorderSide(color: Colors.amber, width: 2.w)
+          side: BorderSide(color: Theme.of(context).colorScheme.onPrimary, width: 2.w,)
         ),
         child: Padding(
           padding: REdgeInsets.all(12),
@@ -34,16 +34,14 @@ class EventCard extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Text(
                         DateFormat('MMM d').format(DateTime.parse(eventModel.date.toString())),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleSmall
                       ),
                     ],
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12.w),
                   // Event details
                   Expanded(
                     child: Column(
@@ -51,16 +49,13 @@ class EventCard extends StatelessWidget {
                       children: [
                         Text(
                           eventModel.title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 18.sp),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4.h),
                         Row(
                           children: [
-                            Icon(Icons.location_on, size: 16, color: Colors.grey[600]),
-                            const SizedBox(width: 4),
+                            Icon(Icons.location_on, size: 16.r, color: Colors.grey[600],),
+                            SizedBox(width: 4.w),
                             Expanded(
                               child: Text(
                                 eventModel.location,
@@ -74,11 +69,11 @@ class EventCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4.h),
                         Row(
                           children: [
                             Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
-                            const SizedBox(width: 4),
+                            SizedBox(width: 4.w),
                             Text(
                               eventModel.formattedTime,
                               style: TextStyle(

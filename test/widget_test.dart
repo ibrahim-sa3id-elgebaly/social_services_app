@@ -5,26 +5,36 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:social_serveces_app/main.dart';
+import 'package:social_serveces_app/ui/splash_screens/first_screen.dart';
+import 'package:social_serveces_app/ui/authentications_screen/login/login_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('App launches and shows splash screen', (WidgetTester tester) async {
+    // Build our app
+    await tester.pumpWidget(const MyApp(
+      initialRoute: FirstScreen.routeName,
+    ));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the initial splash screen is shown
+    expect(find.byType(FirstScreen), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Login screen contains all required elements', (WidgetTester tester) async {
+    // Directly test the LoginScreen widget
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: LoginScreen(),
+      ),
+    ));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify all critical widgets exist
+    expect(find.text('Login'), findsOneWidget); // AppBar title
+    expect(find.byType(TextFormField), findsNWidgets(2)); // Email and password fields
+    expect(find.text('Forgotten password?'), findsOneWidget);
+    expect(find.text('Or create new account'), findsOneWidget);
   });
 }

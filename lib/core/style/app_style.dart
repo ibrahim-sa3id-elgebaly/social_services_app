@@ -24,6 +24,10 @@ class AppStyle {
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
+      titleSmall: TextStyle(
+        color: AppColors.secondaryLightColor,
+        fontWeight: FontWeight.bold,
+      ),
       displaySmall: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.bold,
@@ -110,6 +114,10 @@ class AppStyle {
         fontSize: 18.sp,
         fontWeight: FontWeight.w400,
         color: Colors.white,
+      ),
+      titleSmall: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
       ),
       titleLarge: TextStyle(
           color: AppColors.secondaryDarkColor,

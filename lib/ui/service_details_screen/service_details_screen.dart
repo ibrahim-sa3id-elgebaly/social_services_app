@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import '../../core/model/event_api_model/event_api_model.dart';
-import '../../core/model/event_model.dart';
+import 'package:social_serveces_app/ui/registration_form_screen/registration_form_screen.dart';
+import 'package:social_serveces_app/widget/custom_button.dart';
 import '../../core/model/service_api_model/service_api_model.dart';
 import '../../core/style/app_colors.dart';
 import '../../widget/event_detail_widget.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
   static const String routeName = "ServiceDetailsScreen";
+
+  const ServiceDetailsScreen({super.key});
 
   @override
   State<ServiceDetailsScreen> createState() => _ServiceDetailsScreenState();
@@ -24,14 +26,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     return Scaffold(
         backgroundColor: const Color(0xFFEFEFF4),
         appBar: AppBar(
-          backgroundColor: AppColors.primaryLightColor,
           title: const Text("Service Details"),
-          titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: const IconThemeData(color: Colors.white),
         ),
         body: SingleChildScrollView(
           padding: REdgeInsets.symmetric(vertical: 10, horizontal: 36),
@@ -54,7 +49,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                 elevation: 5,
                 shadowColor: Colors.black.withOpacity(0.1),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: REdgeInsets.all(20.0),
                   child: Column(
                     children: [
                       EventDetailWidget(
@@ -86,6 +81,12 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                   ),
                 ),
               ),
+              CustomButton(
+                label: "apply form",
+                onClick: () {
+                  Navigator.pushNamed(context, RegistrationFormScreen.routeName);
+                },
+              )
             ],
           ),
         ));

@@ -6,7 +6,6 @@ import 'tabs/event_tab.dart';
 import 'tabs/person_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = "home";
 
@@ -26,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
     const PersonTab()
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
           SearchAnchor(
             searchController: controller,
             builder: (context, controller) {
-              return IconButton(onPressed: () {
-                controller.openView();
-              }, icon: const Icon(Icons.search),);
+              return IconButton(
+                onPressed: () {
+                  controller.openView();
+                },
+                icon: const Icon(Icons.search),
+              );
             },
             suggestionsBuilder: (context, controller) {
               return List<ListTile>.generate(6, (index) {
@@ -67,12 +68,22 @@ class _HomeScreenState extends State<HomeScreen> {
             });
           },
           items: [
-            BottomNavigationBarItem(icon: const Icon(Icons.home), label: AppLocalizations.of(context)!.home),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.event), label: AppLocalizations.of(context)!.event),
-            BottomNavigationBarItem(icon: const Icon(Icons.chat), label: AppLocalizations.of(context)!.forum),
+              icon: const Icon(Icons.home),
+              label: AppLocalizations.of(context)!.home,
+            ),
             BottomNavigationBarItem(
-                icon: const Icon(Icons.person), label: AppLocalizations.of(context)!.person),
+              icon: const Icon(Icons.event),
+              label: AppLocalizations.of(context)!.event,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.chat),
+              label: AppLocalizations.of(context)!.forum,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.person),
+              label: AppLocalizations.of(context)!.person,
+            ),
           ]),
     );
   }

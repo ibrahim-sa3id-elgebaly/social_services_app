@@ -11,8 +11,8 @@ class SkipButton extends StatelessWidget {
       alignment: Alignment.topRight,
       child: TextButton(
           onPressed: onPressed,
-          child: Text(text,style: TextStyle(
-              color: Colors.black
+          child: Text(text,style: const TextStyle(
+              color: Colors.black,
           ),)
       ),
     );

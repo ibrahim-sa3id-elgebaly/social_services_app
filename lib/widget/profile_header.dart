@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
 typedef editFunction = void Function();
 
 class ProfileHeader extends StatelessWidget {
@@ -21,7 +22,7 @@ class ProfileHeader extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            radius: 30,
+            radius: 30.r,
             backgroundImage: AssetImage('assets/images/avatar.png'),
           ),
           SizedBox(width: 7.w),

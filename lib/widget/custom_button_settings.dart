@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/style/app_colors.dart';
 
@@ -21,13 +22,13 @@ class CustomButtonSettings extends StatelessWidget {
       child: Container(
         child: Row(
           children: [
-            SizedBox(width: 18),
+            SizedBox(width: 18.w),
             Icon(
               icon,
-              size: 28,
+              size: 28.r,
               color: Theme.of(context).colorScheme.secondary,
             ),
-            SizedBox(width: 20),
+            SizedBox(width: 20.w),
             Text(iconName, style: Theme.of(context).textTheme.titleLarge),
           ],
         ),

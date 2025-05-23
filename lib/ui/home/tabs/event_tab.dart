@@ -51,7 +51,7 @@ class _EventTabState extends State<EventTab> {
                   ))
                       .toList(),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SizedBox(
                   height: 600.h, // 👈 adjust height as needed
                   child: TabBarView(
@@ -61,7 +61,7 @@ class _EventTabState extends State<EventTab> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           }
                           if (snapshot.hasError) {
                             return Center(
@@ -73,7 +73,7 @@ class _EventTabState extends State<EventTab> {
                                       onPressed: () {
                                         setState(() {});
                                       },
-                                      child: Text("Try again"))
+                                      child: const Text("Try again"))
                                 ],
                               ),
                             );
@@ -96,7 +96,7 @@ class _EventTabState extends State<EventTab> {
                               },
                             ),
                             separatorBuilder: (context, index) =>
-                                Divider(),
+                                const Divider(),
                             itemCount: events.length,
                           );
                         },

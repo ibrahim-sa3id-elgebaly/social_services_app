@@ -11,9 +11,7 @@ import '../../../widget/custom_form_field.dart';
 class ForgottenPasswordScreen extends StatelessWidget {
   static const String routeName = "forgotten password screen";
 
-  ForgottenPasswordScreen({super.key});
-
-  final _formKey = GlobalKey<FormState>();
+  const ForgottenPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,7 @@ class ForgottenPasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   state is ForgotPasswordLoading
-                      ? Center(child: CircularProgressIndicator())
+                      ? const Center(child: CircularProgressIndicator())
                       : CustomButton(
                       label: "Send Reset otp",
                       onClick: () {

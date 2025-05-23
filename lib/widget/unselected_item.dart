@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class UnSelectedItem extends StatelessWidget {
   String unselected;
-  UnSelectedItem(this.unselected);
+  UnSelectedItem(this.unselected, {super.key});
 
   @override
   Widget build(BuildContext context) {

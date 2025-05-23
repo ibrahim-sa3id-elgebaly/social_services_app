@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/core/api/api_manager.dart';
 import 'package:social_serveces_app/ui/service_details_screen/service_details_screen.dart';
 import '../../../core/model/service_api_model/service_api_model.dart';
 import '../../../core/model/services_model.dart';
-import '../../../core/style/app_colors.dart';
 import '../../../widget/service_item.dart';
 
 class ServiceScreen extends StatefulWidget {
   static const String routeName = "serviceScreen";
 
-  ServiceScreen({super.key});
+  const ServiceScreen({super.key});
 
   @override
   State<ServiceScreen> createState() => _ServiceScreenState();
@@ -23,20 +21,13 @@ class _ServiceScreenState extends State<ServiceScreen> {
     final service = ModalRoute.of(context)!.settings.arguments as ServicesModel;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(service.title),
-          titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: FutureBuilder(
             future: ApiManager.getServiceEvent(service.id),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
@@ -50,7 +41,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                             onPressed: () {
                               setState(() {});
                             },
-                            child: Text("try again"))
+                            child: const Text("try again"))
                       ],
                     ),
                   ),
@@ -73,7 +64,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                       );
                     },
                   ),
-                  separatorBuilder: (context, index) => Divider(),
+                  separatorBuilder: (context, index) => const Divider(),
                   itemCount: articles.length,
                 ),
               );
