@@ -5,7 +5,6 @@ import 'package:social_serveces_app/core/cubit/user/user_state.dart';
 import '../../../core/cache/cache_helper.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/cubit/user/user_cubit.dart';
-import '../../../core/style/app_colors.dart';
 import '../../../widget/custom_button.dart';
 import '../../../widget/custom_form_field.dart';
 import '../../../widget/skip_button.dart';

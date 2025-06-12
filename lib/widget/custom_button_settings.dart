@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../core/style/app_colors.dart';
-
 class CustomButtonSettings extends StatelessWidget {
   String iconName;
   IconData icon;
