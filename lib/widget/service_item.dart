@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import '../core/model/service_api_model/service_api_model.dart';
 import 'custom_button.dart';
 
@@ -8,7 +7,7 @@ class ServiceItem extends StatelessWidget {
   final ServiceEventApiModel serviceApiModel;
   final void Function() onPress;
 
-  ServiceItem(
+  const ServiceItem(
       {super.key, required this.serviceApiModel, required this.onPress});
 
   @override

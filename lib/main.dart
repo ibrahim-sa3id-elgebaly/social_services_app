@@ -6,7 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/core/api/api_dio/dio_consumer.dart';
 import 'package:social_serveces_app/core/cache/cache_helper.dart';
-import 'package:social_serveces_app/core/cubit/user_cubit.dart';
+import 'package:social_serveces_app/core/cubit/user/user_cubit.dart';
 import 'package:social_serveces_app/core/settings/settings_cubit.dart';
 import 'package:social_serveces_app/core/settings/settings_state.dart';
 import 'package:social_serveces_app/core/repositories/user_repository.dart';
@@ -14,6 +14,7 @@ import 'package:social_serveces_app/core/style/app_style.dart';
 import 'package:social_serveces_app/ui/authentications_screen/forgotten_password/forgotten_password_screen.dart';
 import 'package:social_serveces_app/ui/authentications_screen/login/login_screen.dart';
 import 'package:social_serveces_app/ui/authentications_screen/register/register_screen.dart';
+import 'package:social_serveces_app/ui/emergency_problem/emergency_problem_screen.dart';
 import 'package:social_serveces_app/ui/event_details_screen/event_details_screen.dart';
 import 'package:social_serveces_app/ui/home/home_screen.dart';
 import 'package:social_serveces_app/ui/home_tap/service/service_screen.dart';
@@ -27,6 +28,7 @@ import 'package:social_serveces_app/ui/splash_screens/first_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/fourth_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/second_screen.dart';
 import 'package:social_serveces_app/ui/splash_screens/third_screen.dart';
+import 'core/cubit/emergency/emergency-cubit.dart';
 import 'ui/authentications_screen/forgotten_password/reset_password.dart';
 import 'ui/service_details_screen/service_details_screen.dart';
 
@@ -57,6 +59,11 @@ void main() async {
             initialThemeMode: themeMode,
             initialLanguage: savedLanguage,
           ),
+        ),
+        BlocProvider(
+          create: (context) => EmergencyCubit(
+            context.read<UserCubit>().userRepository,
+          ), // Add EmergencyCubit here
         ),
       ],
       child: MyApp(initialRoute: savedInitialRoute ?? FirstScreen.routeName),
@@ -128,7 +135,8 @@ class MyApp extends StatelessWidget {
                     EditProfileScreen.routeName:(_) => EditProfileScreen(),
                     ServiceDetailsScreen.routeName:(_) => ServiceDetailsScreen(),
                     EventDetailsScreen.routeName:(_) => EventDetailsScreen(),
-                    RegistrationFormScreen.routeName:(_) => RegistrationFormScreen()
+                    RegistrationFormScreen.routeName:(_) => RegistrationFormScreen(),
+                    EmergencyProblemScreen.routeName:(_) => EmergencyProblemScreen()
                   },
                 );
               },

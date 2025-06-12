@@ -8,6 +8,27 @@ class ServerException implements Exception {
 }
 
 void handleDioExceptions(DioException e) {
+  // Handle HTML responses
+  if (e.response?.data is String &&
+      e.response!.data.toString().contains('<!DOCTYPE html>')) {
+    throw ServerException(
+      errModel: ErrorModel(errorMessage: 'Server error: ${e.response?.statusCode}'),
+    );
+  }
+
+  // Handle JSON responses
+  if (e.response?.data is Map<String, dynamic>) {
+    throw ServerException(errModel: ErrorModel.fromJson(e.response!.data));
+  }
+
+  // Fallback for other cases
+  throw ServerException(
+    errModel: ErrorModel(errorMessage: e.message ?? 'Unknown error'),
+  );
+}
+
+/*
+void handleDioExceptions(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
       throw ServerException(errModel: ErrorModel.fromJson(e.response!.data));
@@ -49,3 +70,4 @@ void handleDioExceptions(DioException e) {
       }
   }
 }
+*/

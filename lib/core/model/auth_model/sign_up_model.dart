@@ -1,4 +1,3 @@
-
 class SignUpModel {
 
   final String message;
@@ -7,7 +6,6 @@ class SignUpModel {
 
   SignUpModel.fromJson(dynamic json)
       : message = json['message'];
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.social_services),
+          title: Text(AppLocalizations.of(context)!.social_services),
         actions: [
           SearchAnchor(
             searchController: controller,

@@ -93,13 +93,33 @@ class DioConsumer extends ApiConsumer {
       handleDioExceptions(e);
     }
   }
-
-  // Helper function to handle response and convert String to Map if necessary
   dynamic _handleResponse(Response response) {
-    // Check if response is String or Map
+    try {
+      if (response.data is String) {
+        // Check if it's HTML error response
+        if (response.data.toString().contains('<!DOCTYPE html>')) {
+          throw DioException(
+            requestOptions: response.requestOptions,
+            response: response,
+            type: DioExceptionType.badResponse,
+          );
+        }
+        return jsonDecode(response.data);
+      }
+      return response.data;
+    } catch (e) {
+      throw DioException(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioExceptionType.badResponse,
+        error: 'Failed to parse response: $e',
+      );
+    }
+  }
+/*
+  dynamic _handleResponse(Response response) {
     if (response.data is String) {
       try {
-        // If the response data is a String, try parsing it into a Map
         final jsonResponse = jsonDecode(response.data);
         if (jsonResponse is Map<String, dynamic>) {
           return jsonResponse;
@@ -110,10 +130,10 @@ class DioConsumer extends ApiConsumer {
         throw Exception('Failed to decode response: $e');
       }
     } else if (response.data is Map<String, dynamic>) {
-      // If it's already a Map<String, dynamic>, return as is
       return response.data;
     } else {
       throw Exception('Unexpected response data type: ${response.data.runtimeType}');
     }
   }
+*/
 }

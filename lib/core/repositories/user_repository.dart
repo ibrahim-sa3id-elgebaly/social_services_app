@@ -6,9 +6,12 @@ import '../api/api_dio/api_consumer.dart';
 import '../api/api_dio/end_ponits.dart';
 import '../api/errors/exceptions.dart';
 import '../cache/cache_helper.dart';
+import '../cubit/emergency/api_emergency_key.dart';
 import '../model/auth_model/sign_in_model.dart';
 import '../model/auth_model/sign_up_model.dart';
 import '../model/auth_model/user_model.dart';
+import '../model/emergency_model/Emergency_model.dart';
+import '../model/registration_model/registration_model.dart';
 
 class UserRepository {
   final ApiConsumer api;
@@ -27,9 +30,12 @@ class UserRepository {
           ApiKey.password: password,
         },
       );
+
       final user = SignInModel.fromJson(response);
       final decodedToken = JwtDecoder.decode(user.token.toString());
-      CacheHelper().saveData(key: ApiKey.token, value: user.token);
+
+      await CacheHelper().saveData(key: ApiKey.token, value: user.token);
+
       if (decodedToken[ApiKey.id] != null) {
         CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
       }
@@ -48,6 +54,7 @@ class UserRepository {
       if (decodedToken[ApiKey.gender] != null) {
         CacheHelper().saveData(key: ApiKey.gender, value: decodedToken[ApiKey.gender]);
       }
+
       return Right(user);
     } on ServerException catch (e) {
       return Left(e.errModel.errorMessage);
@@ -84,14 +91,24 @@ class UserRepository {
 
   Future<Either<String, UserModel>> getUserProfile() async {
     try {
+      final userId = CacheHelper().getData(key: ApiKey.id);
+      if (userId == null) {
+        return Left('User ID not found in cache');
+      }
       final response = await api.get(
-        EndPoint.getUserDataEndPoint(
-          CacheHelper().getData(key: ApiKey.id),
-        ),
+        EndPoint.getUserDataEndPoint(userId),
       );
       return Right(UserModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errModel.errorMessage);
+    }
+    on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        return Left('User not found');
+      }
+      return Left(e.message ?? 'Network error');
+    } catch (e) {
+      return Left('An unexpected error occurred');
     }
   }
 
@@ -167,4 +184,56 @@ class UserRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, EmergencyModel>> postEmergency({
+    required String name,
+    required String governorate,
+    required String phone,
+    required String description,
+    required bool urgent,
+  }) async {
+    try {
+      final response = await api.post(
+        EndPoint.postEmergency,
+        isFromData: false,
+        data: {
+          ApiEmerRegsKey.name: name,
+          ApiEmerRegsKey.governorate: governorate,
+          ApiEmerRegsKey.phone: phone,
+          ApiEmerRegsKey.description: description,
+          ApiEmerRegsKey.urgent: urgent,
+        },
+      );
+      final emergencyModel = EmergencyModel.fromJson(response);
+      return Right(emergencyModel);
+    } on ServerException catch (e) {
+      return Left(e.errModel.errorMessage);
+    }
+  }
+
+  Future<Either<String, RegistrationsModel>> registrations({
+    required String name,
+    required String age,
+    required String gender,
+    required String phone,
+    required String id,
+  }) async {
+    try {
+      final response = await api.post(
+        "${EndPoint.registrationForm}/$id",
+        isFromData: false,
+        data: {
+          ApiEmerRegsKey.name: name,
+          ApiEmerRegsKey.age: age,
+          ApiEmerRegsKey.gender: gender,
+          ApiEmerRegsKey.phone: phone,
+        },
+      );
+      final registrationsModel = RegistrationsModel.fromJson(response);
+      return Right(registrationsModel);
+    } on ServerException catch (e) {
+      return Left(e.errModel.errorMessage);
+    }
+  }
+
 }

@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../api_dio/end_ponits.dart';
 
 class ErrorModel {
@@ -8,8 +10,19 @@ class ErrorModel {
 
   factory ErrorModel.fromJson(Map<String, dynamic> jsonData) {
     return ErrorModel(
-//      status: jsonData[ApiKey.status],
-      errorMessage: jsonData[ApiKey.errorMessage],
+      errorMessage: jsonData[ApiKey.errorMessage] ??
+          jsonData['error'] ??
+          'Unknown error occurred',
     );
   }
+
+  factory ErrorModel.fromDioException(DioException e) {
+    if (e.response?.data is Map<String, dynamic>) {
+      return ErrorModel.fromJson(e.response!.data);
+    }
+    return ErrorModel(
+      errorMessage: e.message ?? 'Network error occurred',
+    );
+  }
+
 }

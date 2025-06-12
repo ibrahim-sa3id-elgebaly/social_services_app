@@ -5,8 +5,13 @@ class EndPoint {
   static String updateProfile = "auth/update-profile";
   static String forgotPassword = "auth/forgot-password";
   static String resetPassword = "auth/reset-password";
+  static String postEmergency = "emergency-requests";
+  static String registrationForm = "event-registrations";
 
   static String getUserDataEndPoint(id) {
+    if (id == null) {
+      throw ArgumentError('User ID cannot be null');
+    }
     return "user/get-user/$id";
   }
 }

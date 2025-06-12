@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:social_serveces_app/core/cubit/user_state.dart';
+import 'package:social_serveces_app/core/cubit/user/user_state.dart';
 import '../../../core/cache/cache_helper.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/cubit/user_cubit.dart';
+import '../../../core/cubit/user/user_cubit.dart';
 import '../../../core/style/app_colors.dart';
 import '../../../widget/custom_button.dart';
 import '../../../widget/custom_form_field.dart';

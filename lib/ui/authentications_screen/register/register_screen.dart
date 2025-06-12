@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:social_serveces_app/core/cubit/user_cubit.dart';
+import 'package:social_serveces_app/core/cubit/user/user_cubit.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/cubit/user_state.dart';
+import '../../../core/cubit/user/user_state.dart';
 import '../../../core/style/app_colors.dart';
 import '../../../widget/custom_button.dart';
 import '../../../widget/custom_form_field.dart';
@@ -41,13 +42,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }
       }, builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
             title: const Text("Create Account"),
           ),
           body: Center(
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: REdgeInsets.all(16),
               child: Form(
                 key: context.read<UserCubit>().signUpFormKey,
                 child: SingleChildScrollView(

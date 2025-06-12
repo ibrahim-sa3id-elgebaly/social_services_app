@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:social_serveces_app/core/api/api_dio/end_ponits.dart';
-import '../cache/cache_helper.dart';
-import '../model/auth_model/sign_in_model.dart';
-import '../repositories/user_repository.dart';
+import '../../cache/cache_helper.dart';
+import '../../model/auth_model/sign_in_model.dart';
+import '../../repositories/user_repository.dart';
 import 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
@@ -92,15 +92,20 @@ class UserCubit extends Cubit<UserState> {
   Future<void> loadUserData() async {
     emit(GetUserLoading());
     try {
-      final token = await CacheHelper().getData(key: 'token');
-      if (token != null) {
-        await getUserProfile(); // Reuse your existing method
-      } else {
-        emit(GetUserFailure(errMessage: "user not logged in."));
+      final token = await CacheHelper().getData(key: ApiKey.token);
+      if (token == null) {
+        emit(GetUserFailure(errMessage: "User not logged in"));
+        return;
       }
+
+      final userId = await CacheHelper().getData(key: ApiKey.id);
+      if (userId == null) {
+        emit(GetUserFailure(errMessage: "User ID not found"));
+        return;
+      }
+      await getUserProfile();
     } catch (e) {
       emit(GetUserFailure(errMessage: "An error occurred: ${e.toString()}"));
-      print("Error is $e");
     }
   }
 

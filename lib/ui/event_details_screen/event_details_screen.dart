@@ -17,7 +17,6 @@ class EventDetailsScreen extends StatefulWidget {
 }
 
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
-
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
@@ -60,8 +59,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       const Divider(),
                       EventDetailWidget(
                         icon: Icons.date_range_outlined,
-                        value: DateFormat("dd/MM/yyyy").format(
-                            DateTime.parse(event.date.toString())),
+                        value: DateFormat("dd/MM/yyyy")
+                            .format(DateTime.parse(event.date.toString())),
                       ),
                       const Divider(),
                       EventDetailWidget(
@@ -85,7 +84,11 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               CustomButton(
                 label: "apply form",
                 onClick: () {
-                  Navigator.pushNamed(context, RegistrationFormScreen.routeName);
+                  Navigator.pushNamed(
+                    context,
+                    RegistrationFormScreen.routeName,
+                    arguments: event.id
+                  );
                 },
               )
             ],

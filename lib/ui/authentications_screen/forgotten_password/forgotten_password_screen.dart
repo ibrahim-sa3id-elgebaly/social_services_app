@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/ui/authentications_screen/forgotten_password/reset_password.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/cubit/user_cubit.dart';
-import '../../../core/cubit/user_state.dart';
+import '../../../core/cubit/user/user_cubit.dart';
+import '../../../core/cubit/user/user_state.dart';
 import '../../../widget/custom_button.dart';
 import '../../../widget/custom_form_field.dart';
 

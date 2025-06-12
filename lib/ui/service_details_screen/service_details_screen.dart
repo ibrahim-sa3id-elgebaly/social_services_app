@@ -17,7 +17,6 @@ class ServiceDetailsScreen extends StatefulWidget {
 }
 
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
-
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
@@ -59,8 +58,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                       const Divider(),
                       EventDetailWidget(
                         icon: Icons.date_range_outlined,
-                        value: DateFormat("dd/MM/yyyy").format(
-                            DateTime.parse(service.date.toString())),
+                        value: DateFormat("dd/MM/yyyy")
+                            .format(DateTime.parse(service.date.toString())),
                       ),
                       const Divider(),
                       EventDetailWidget(
@@ -84,7 +83,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
               CustomButton(
                 label: "apply form",
                 onClick: () {
-                  Navigator.pushNamed(context, RegistrationFormScreen.routeName);
+                  Navigator.pushNamed(
+                    context,
+                    RegistrationFormScreen.routeName,
+                    arguments: service.id
+                  );
                 },
               )
             ],

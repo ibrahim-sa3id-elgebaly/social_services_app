@@ -9,6 +9,7 @@ class CustomFormField extends StatefulWidget {
   String? Function(String?) validate;
   TextEditingController controller;
   int? maxLength;
+  int? maxLines;
 
   CustomFormField({
     super.key,
@@ -17,7 +18,8 @@ class CustomFormField extends StatefulWidget {
     this.isPassword = false,
     required this.validate,
     required this.controller,
-    this.maxLength
+    this.maxLength,
+    this.maxLines=1
   });
 
   @override
@@ -31,6 +33,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLength: widget.maxLength,
+      maxLines: widget.maxLines,
       controller: widget.controller,
       validator: widget.validate,
       keyboardType: widget.keyboard,
@@ -56,7 +59,18 @@ class _CustomFormFieldState extends State<CustomFormField> {
             : null,
         labelText: widget.label,
         labelStyle: Theme.of(context).textTheme.labelSmall,
+          border: buildBorder(Theme.of(context).colorScheme.primary),
+          focusedBorder: buildBorder(Theme.of(context).colorScheme.onPrimary)
       ),
     );
   }
+
+  OutlineInputBorder buildBorder([color]) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide(color: color ?? Colors.white),
+    );
+  }
+
+
 }
