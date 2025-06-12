@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/core/cubit/emergency/emergency_state.dart';
-import 'package:social_serveces_app/core/model/event_model.dart';
-import 'package:social_serveces_app/core/model/registration_model/registration_model.dart';
 import '../../core/cubit/emergency/emergency-cubit.dart';
-import '../../core/cubit/user/user_cubit.dart';
 import '../../core/cubit/user/user_state.dart';
-import '../../core/model/service_api_model/service_api_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_form_field.dart';
 
@@ -21,8 +17,8 @@ class RegistrationFormScreen extends StatelessWidget {
     return SafeArea(
         child: BlocConsumer<EmergencyCubit, EmergencyState>(listener: (context, state) {
           if (state is RegistrationSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text("Registration succefuly"),
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Registration successfully"),
               duration: Duration(seconds: 1),
             ));
             context.read<EmergencyCubit>().registrationName.clear();
@@ -98,7 +94,7 @@ class RegistrationFormScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 76),
                       state is SignUpLoading
-                          ? Center(child: CircularProgressIndicator())
+                          ? const Center(child: CircularProgressIndicator())
                           : CustomButton(
                           label: "Register",
                           onClick: () {
@@ -109,7 +105,6 @@ class RegistrationFormScreen extends StatelessWidget {
                                 ?.validate() ==
                                 true) {
                               context.read<EmergencyCubit>().registrationForm(eventId);
-                              print(eventId);
                             }
                           }),
                     ],

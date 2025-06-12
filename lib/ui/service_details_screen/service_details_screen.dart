@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:social_serveces_app/ui/registration_form_screen/registration_form_screen.dart';
 import 'package:social_serveces_app/widget/custom_button.dart';
 import '../../core/model/service_api_model/service_api_model.dart';
-import '../../core/style/app_colors.dart';
 import '../../widget/event_detail_widget.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
