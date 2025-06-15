@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:social_serveces_app/core/cubit/user/user_cubit.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/cubit/user/user_state.dart';
 import '../../../widget/custom_button.dart';
 import '../../../widget/custom_form_field.dart';
-import '../login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = "Register";
@@ -27,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(state.message),
           ));
+          Navigator.of(context).pop();
           context.read<UserCubit>().signUpFirstName.clear();
           context.read<UserCubit>().signUpLastName.clear();
           context.read<UserCubit>().signUpEmail.clear();
@@ -190,7 +189,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.05),
                       state is SignUpLoading
-                          ? Center(child: CircularProgressIndicator())
+                          ? const Center(child: CircularProgressIndicator())
                           : CustomButton(
                                   label: "Create Account",
                                   onClick: () {

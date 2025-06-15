@@ -25,7 +25,7 @@ class EditProfileScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
           );
-          Navigator.pop(context);
+          // Navigator.pop(context);
         }
       },
       builder: (context, state) {

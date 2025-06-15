@@ -7,6 +7,7 @@ import '../api/api_dio/end_ponits.dart';
 import '../api/errors/exceptions.dart';
 import '../cache/cache_helper.dart';
 import '../cubit/emergency/api_emergency_key.dart';
+import '../model/auth_model/forget_password.dart';
 import '../model/auth_model/sign_in_model.dart';
 import '../model/auth_model/sign_up_model.dart';
 import '../model/auth_model/user_model.dart';
@@ -144,12 +145,10 @@ class UserRepository {
       return Right(UserModel.fromJson(response));
     } on DioException catch (e) { // Changed from ServerException to DioException
       return Left(e.response?.data[ApiKey.errorMessage] ?? e.message ?? 'Unknown error');
-    } catch (e) {
-      return Left(e.toString());
     }
   }
 
-  Future<Either<String, String>> forgotPassword({
+  Future<Either<String, ForgetPasswordModel>> forgotPassword({
     required String email,
   }) async {
     try {
@@ -159,13 +158,14 @@ class UserRepository {
           ApiKey.email: email,
         },
       );
-      return Right(response[ApiKey.message]);
-    } catch (e) {
-      return Left(e.toString());
+      final forgetPassword = ForgetPasswordModel.fromJson(response);
+      return Right(forgetPassword);
+    } on ServerException catch (e) {
+      return Left(e.errModel.errorMessage);
     }
   }
 
-  Future<Either<String, String>> resetPassword({
+  Future<Either<String, ForgetPasswordModel>> resetPassword({
     required String email,
     required String otp,
     required String newPassword,
@@ -179,11 +179,12 @@ class UserRepository {
           ApiKey.newPassword: newPassword,
         },
       );
-      return Right(response[ApiKey.message]);
-    } catch (e) {
-      return Left(e.toString());
+      final resetPassword = ForgetPasswordModel.fromJson(response);
+      return Right(resetPassword);
+    } on ServerException catch (e) {
+      return Left(e.errModel.errorMessage);
     }
-  }
+    }
 
   Future<Either<String, EmergencyModel>> postEmergency({
     required String name,

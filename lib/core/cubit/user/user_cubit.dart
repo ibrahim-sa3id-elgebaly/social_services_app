@@ -137,18 +137,18 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> forgotPassword() async {
+  forgotPassword() async {
     emit(ForgotPasswordLoading());
     final response = await userRepository.forgotPassword(
       email: forgotPasswordEmail.text,
     );
     response.fold(
-      (errMessage) => emit(ForgotPasswordFailure(errMessage: errMessage)),
-      (message) => emit(ForgotPasswordSuccess(message: message)),
+          (errMessage) => emit(ForgotPasswordFailure(errMessage: errMessage)),
+          (forgetPasswordModel) => emit(ForgotPasswordSuccess(message: forgetPasswordModel.message)),
     );
   }
 
-  Future<void> resetPassword() async {
+  resetPassword() async {
     emit(ResetPasswordLoading());
     final response = await userRepository.resetPassword(
       email: forgotPasswordEmail.text,
@@ -156,14 +156,8 @@ class UserCubit extends Cubit<UserState> {
       newPassword: resetNewPassword.text,
     );
     response.fold(
-      (errMessage) => emit(ResetPasswordFailure(errMessage: errMessage)),
-      (message) {
-        // Clear fields after successful reset
-        // forgotPasswordEmail.clear();
-        // otpController.clear();
-        // resetNewPassword.clear();
-        emit(ResetPasswordSuccess(message: message));
-      },
+          (errMessage) => emit(ResetPasswordFailure(errMessage: errMessage)),
+          (resetPasswordModel) => emit(ResetPasswordSuccess(message: resetPasswordModel.message)),
     );
   }
 

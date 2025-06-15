@@ -25,7 +25,7 @@ class ForgottenPasswordScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
           );
-          Navigator.pushNamed(context, ResetPasswordScreen.routeName);
+          Navigator.of(context).pushNamed(ResetPasswordScreen.routeName);
         }
       },
       builder: (context, state) {
