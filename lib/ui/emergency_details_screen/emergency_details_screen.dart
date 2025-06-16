@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:social_serveces_app/core/model/emergency_model/Emergency_model.dart';
-import 'package:social_serveces_app/widget/custom_button.dart';
 import '../../widget/event_detail_widget.dart';
 
 class EmergencyDetailsScreen extends StatefulWidget {

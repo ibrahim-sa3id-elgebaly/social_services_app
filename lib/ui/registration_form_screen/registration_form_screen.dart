@@ -7,7 +7,6 @@ import '../../core/cubit/user/user_state.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegistrationFormScreen extends StatelessWidget {
   static const String routeName = "Registration Form Screen";
