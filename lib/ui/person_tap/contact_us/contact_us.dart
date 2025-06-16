@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ContactUs extends StatefulWidget {
   static const String routeName = "ContactUS";
@@ -33,7 +34,7 @@ class _ContactUsScreenState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact Us'),
+        title: Text(AppLocalizations.of(context)!.contact_us),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

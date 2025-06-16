@@ -14,6 +14,7 @@ import 'package:social_serveces_app/core/style/app_style.dart';
 import 'package:social_serveces_app/ui/authentications_screen/forgotten_password/forgotten_password_screen.dart';
 import 'package:social_serveces_app/ui/authentications_screen/login/login_screen.dart';
 import 'package:social_serveces_app/ui/authentications_screen/register/register_screen.dart';
+import 'package:social_serveces_app/ui/emergency_details_screen/emergency_details_screen.dart';
 import 'package:social_serveces_app/ui/emergency_problem/emergency_problem_screen.dart';
 import 'package:social_serveces_app/ui/event_details_screen/event_details_screen.dart';
 import 'package:social_serveces_app/ui/home/home_screen.dart';
@@ -52,7 +53,6 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => UserCubit(UserRepository(api: DioConsumer(dio: Dio())))
-            ..loadUserData(),
         ),
         BlocProvider(
           create: (context) => SettingsCubit(
@@ -135,6 +135,7 @@ class MyApp extends StatelessWidget {
                     EditProfileScreen.routeName:(_) => EditProfileScreen(),
                     ServiceDetailsScreen.routeName:(_) => ServiceDetailsScreen(),
                     EventDetailsScreen.routeName:(_) => EventDetailsScreen(),
+                    EmergencyDetailsScreen.routeName:(_) => EmergencyDetailsScreen(),
                     RegistrationFormScreen.routeName:(_) => RegistrationFormScreen(),
                     EmergencyProblemScreen.routeName:(_) => EmergencyProblemScreen()
                   },

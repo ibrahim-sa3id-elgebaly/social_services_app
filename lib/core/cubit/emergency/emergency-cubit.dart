@@ -13,7 +13,8 @@ class EmergencyCubit extends Cubit<EmergencyState> {
   TextEditingController postEmergencyGovernorate = TextEditingController();
   TextEditingController postEmergencyPhoneNumber = TextEditingController();
   TextEditingController postEmergencyDescription = TextEditingController();
-  TextEditingController postEmergencyUrgent = TextEditingController();
+  bool postEmergencyUrgent = false;
+//  TextEditingController postEmergencyUrgent = TextEditingController();
 //--------------------------------------------------------------------
 
   GlobalKey<FormState> registrationFormKey = GlobalKey();
@@ -31,7 +32,7 @@ class EmergencyCubit extends Cubit<EmergencyState> {
       governorate: postEmergencyGovernorate.text,
       phone: postEmergencyPhoneNumber.text,
       description: postEmergencyDescription.text,
-      urgent: true,
+      urgent: postEmergencyUrgent,
     );
     response.fold(
           (errMessage) => emit(PostProblemFailure(errMessage: errMessage)),

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_serveces_app/ui/emergency_problem/emergency_problem_screen.dart';
 import 'package:social_serveces_app/widget/custom_Emergency_card.dart';
 import '../../../core/api/api_manager.dart';
-import '../../service_details_screen/service_details_screen.dart';
+import '../../emergency_details_screen/emergency_details_screen.dart';
 
 class ForumTab extends StatefulWidget {
   const ForumTab({super.key});
@@ -51,7 +51,7 @@ class _ForumTabState extends State<ForumTab> {
                 onPress: () {
                   Navigator.pushNamed(
                     context,
-                    ServiceDetailsScreen.routeName,
+                    EmergencyDetailsScreen.routeName,
                     arguments: emergencyModel[index],
                   );
                 },

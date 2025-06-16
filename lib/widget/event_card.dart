@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import '../core/model/service_api_model/service_api_model.dart';
 import 'custom_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EventCard extends StatelessWidget {
   final ServiceEventApiModel eventModel;
@@ -90,8 +91,10 @@ class EventCard extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               CustomButton(
-                label: "Show Details",
-                onClick: () => onPress,
+                label: AppLocalizations.of(context)!.show_details,
+                onClick: (){
+                  onPress();
+                },
               )
             ],
           ),

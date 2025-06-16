@@ -6,6 +6,8 @@ import '../../core/cubit/emergency/emergency-cubit.dart';
 import '../../core/cubit/user/user_state.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegistrationFormScreen extends StatelessWidget {
   static const String routeName = "Registration Form Screen";
@@ -33,7 +35,7 @@ class RegistrationFormScreen extends StatelessWidget {
         }, builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Registration Form"),
+              title: Text(AppLocalizations.of(context)!.registration),
             ),
             body: Padding(
               padding: REdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -67,20 +69,9 @@ class RegistrationFormScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       CustomFormField(
-                        controller: context.read<EmergencyCubit>().registrationGender,
-                        label: "Gender",
-                        keyboard: TextInputType.text,
-                        validate: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return "Please enter your gender";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      CustomFormField(
                         controller: context.read<EmergencyCubit>().registrationPhoneNumber,
                         label: "Phone number",
+                        maxLength: 11,
                         keyboard: TextInputType.phone,
                         validate: (value) {
                           if (value == null || value.trim().isEmpty) {
@@ -92,11 +83,37 @@ class RegistrationFormScreen extends StatelessWidget {
                           return null;
                         },
                       ),
+                      const SizedBox(height: 16),
+                      DropdownButtonFormField<String>(
+                        value: context.read<EmergencyCubit>().registrationGender.text.isNotEmpty
+                            ? context.read<EmergencyCubit>().registrationGender.text
+                            : null,
+                        decoration: const InputDecoration(
+                          labelText: 'Gender',
+                          border: UnderlineInputBorder(),
+                          iconColor: Colors.black,
+                        ),items: ['male', 'female'].map((gender) {
+                        return DropdownMenuItem<String>(
+                          value: gender,
+                          child: Text(gender,
+                              style: const TextStyle(color: Colors.black,
+                                  fontSize: 15)),
+                        );}).toList(),
+                        onChanged: (value) {
+                          context.read<EmergencyCubit>().registrationGender.text = value!;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please select your gender';
+                          }
+                          return null;
+                        },
+                      ),
                       const SizedBox(height: 76),
                       state is SignUpLoading
                           ? const Center(child: CircularProgressIndicator())
                           : CustomButton(
-                          label: "Register",
+                          label: AppLocalizations.of(context)!.register,
                           onClick: () {
                             if (context
                                 .read<EmergencyCubit>()

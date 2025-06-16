@@ -6,6 +6,7 @@ import '../../core/model/event_model.dart';
 import '../../core/model/service_api_model/service_api_model.dart';
 import '../../widget/event_detail_widget.dart';
 import '../registration_form_screen/registration_form_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EventDetailsScreen extends StatefulWidget {
   static const String routeName = "EventDetailsScreen";
@@ -82,7 +83,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                 ),
               ),
               CustomButton(
-                label: "apply form",
+                label: AppLocalizations.of(context)!.apply_form,
                 onClick: () {
                   Navigator.pushNamed(
                     context,

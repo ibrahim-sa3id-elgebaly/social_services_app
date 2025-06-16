@@ -20,14 +20,6 @@ class PersonTab extends StatefulWidget {
 }
 
 class _PersonTabState extends State<PersonTab> {
-  @override
-  void initState() {
-    super.initState();
-    // Load user data when the tab is initialized
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<UserCubit>().loadUserData();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +39,9 @@ class _PersonTabState extends State<PersonTab> {
               }
             },
             builder: (context, state) {
-              // Handle loading state
               if (state is GetUserLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
-
-              // Handle error state
               if (state is GetUserFailure) {
                 return ProfileHeader(
                   name: '',
@@ -62,7 +51,6 @@ class _PersonTabState extends State<PersonTab> {
                   },
                 );
               }
-              // Handle success state
               if (state is GetUserSuccess) {
                 return ProfileHeader(
                   name: '${state.user.firstName} ${state.user.lastName}',
@@ -72,23 +60,17 @@ class _PersonTabState extends State<PersonTab> {
                   },
                 );
               }
-
-              // Initial state - try to get cached data
-              final firstName = context.read<UserCubit>().signUpFirstName.text;
-              final lastName = context.read<UserCubit>().signUpLastName.text;
-              final email = context.read<UserCubit>().signUpEmail.text;
               return ProfileHeader(
-                name: firstName.isNotEmpty && lastName.isNotEmpty
-                    ? '$firstName $lastName'
-                    : 'Guest User',
-                email: email.isNotEmpty
-                    ? email
-                    : 'Guest Email',
+                name: "Loading....",
+                email: "",
                 onClick: () {
                   Navigator.of(context).pushNamed(EditProfileScreen.routeName);
                 },
+
               );
+
             },
+
           ),
           SizedBox(height: 28.h),
           const Divider(),

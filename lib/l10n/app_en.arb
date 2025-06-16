@@ -5,6 +5,7 @@
   "forum" : "Forum",
   "person" : "Person",
   "settings" : "Settings",
+  "update_profile" : "Update Profile",
   "contact_us" : "Contact Us",
   "about_us" : "About Us",
   "log_out" : "Log Out",
@@ -20,5 +21,11 @@
   "elderly_care": "Elderly Care",
   "orphan_care" : "Orphan Care",
   "seasonal_aid" : "Seasonal Aid",
-  "volunteer_for_good": "Volunteer For Good"
+  "volunteer_for_good": "Volunteer For Good",
+  "emergency_problem": "Emergency Problem",
+  "emergency_details": "Emergency Details",
+  "registration": "Registration Form",
+  "apply_form": "Apply Form",
+  "show_details": "Show Details",
+  "register": "Register"
 }

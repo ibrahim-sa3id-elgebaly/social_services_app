@@ -5,6 +5,7 @@
   "forum": "المنتدى",
   "person": "الشخصي",
   "settings": "الإعدادات",
+  "update_profile" : "تعديل الملف الشخصي",
   "contact_us": "اتصل بنا",
   "about_us": "معلومات عنا",
   "log_out": "تسجيل الخروج",
@@ -20,5 +21,12 @@
   "elderly-care": "رعايه المسنين",
   "orphan_care": "رعاية الأيتام",
   "seasonal_aid": "المساعدات الموسمية",
-  "volunteer_for_good": "تطوع فى الخير"
+  "volunteer_for_good": "تطوع فى الخير",
+  "emergency_problem": "حاله طارئه",
+  "emergency_details": "تفاصيل طارئه",
+  "registration": "تسجيل",
+  "apply_form": "سجل الأن",
+  "show_details": "عرض التفاصيل",
+  "register": "سجل"
+
 }

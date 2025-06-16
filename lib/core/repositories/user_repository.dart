@@ -31,31 +31,10 @@ class UserRepository {
           ApiKey.password: password,
         },
       );
-
       final user = SignInModel.fromJson(response);
-      final decodedToken = JwtDecoder.decode(user.token.toString());
-
-      await CacheHelper().saveData(key: ApiKey.token, value: user.token);
-
-      if (decodedToken[ApiKey.id] != null) {
-        CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
-      }
-      if (decodedToken[ApiKey.firstName] != null) {
-        CacheHelper().saveData(key: ApiKey.firstName, value: decodedToken[ApiKey.firstName]);
-      }
-      if (decodedToken[ApiKey.lastName] != null) {
-        CacheHelper().saveData(key: ApiKey.lastName, value: decodedToken[ApiKey.lastName]);
-      }
-      if (decodedToken[ApiKey.email] != null) {
-        CacheHelper().saveData(key: ApiKey.email, value: decodedToken[ApiKey.email]);
-      }
-      if (decodedToken[ApiKey.phone] != null) {
-        CacheHelper().saveData(key: ApiKey.phone, value: decodedToken[ApiKey.phone]);
-      }
-      if (decodedToken[ApiKey.gender] != null) {
-        CacheHelper().saveData(key: ApiKey.gender, value: decodedToken[ApiKey.gender]);
-      }
-
+      final decodedToken = JwtDecoder.decode(user.token);
+      CacheHelper().saveData(key: ApiKey.token, value: user.token);
+      CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
       return Right(user);
     } on ServerException catch (e) {
       return Left(e.errModel.errorMessage);
@@ -92,24 +71,14 @@ class UserRepository {
 
   Future<Either<String, UserModel>> getUserProfile() async {
     try {
-      final userId = CacheHelper().getData(key: ApiKey.id);
-      if (userId == null) {
-        return Left('User ID not found in cache');
-      }
       final response = await api.get(
-        EndPoint.getUserDataEndPoint(userId),
+        EndPoint.getUserDataEndPoint(
+          CacheHelper().getData(key: ApiKey.id),
+        ),
       );
       return Right(UserModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errModel.errorMessage);
-    }
-    on DioException catch (e) {
-      if (e.response?.statusCode == 404) {
-        return Left('User not found');
-      }
-      return Left(e.message ?? 'Network error');
-    } catch (e) {
-      return Left('An unexpected error occurred');
     }
   }
 
@@ -145,6 +114,8 @@ class UserRepository {
       return Right(UserModel.fromJson(response));
     } on DioException catch (e) { // Changed from ServerException to DioException
       return Left(e.response?.data[ApiKey.errorMessage] ?? e.message ?? 'Unknown error');
+    } catch (e) {
+      return Left(e.toString());
     }
   }
 

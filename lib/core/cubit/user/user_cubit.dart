@@ -89,25 +89,6 @@ class UserCubit extends Cubit<UserState> {
     );
   }
 
-  Future<void> loadUserData() async {
-    emit(GetUserLoading());
-    try {
-      final token = await CacheHelper().getData(key: ApiKey.token);
-      if (token == null) {
-        emit(GetUserFailure(errMessage: "User not logged in"));
-        return;
-      }
-
-      final userId = await CacheHelper().getData(key: ApiKey.id);
-      if (userId == null) {
-        emit(GetUserFailure(errMessage: "User ID not found"));
-        return;
-      }
-      await getUserProfile();
-    } catch (e) {
-      emit(GetUserFailure(errMessage: "An error occurred: ${e.toString()}"));
-    }
-  }
 
   Future<void> updateProfile() async {
     emit(UpdateProfileLoading());
