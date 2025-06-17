@@ -76,8 +76,10 @@ class RegistrationFormScreen extends StatelessWidget {
                           if (value == null || value.trim().isEmpty) {
                             return "Please enter your phone";
                           }
-                          if (value.length < 11) {
-                            return "Please enter valid phone number";
+                          value = value.trim();
+                          final RegExp regex = RegExp(r'^(010|011|012|015)[0-9]{8}$');
+                          if (!regex.hasMatch(value)) {
+                            return "Please enter a valid Egyptian phone number";
                           }
                           return null;
                         },

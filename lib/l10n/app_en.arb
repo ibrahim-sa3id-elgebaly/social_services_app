@@ -27,5 +27,6 @@
   "registration": "Registration Form",
   "apply_form": "Apply Form",
   "show_details": "Show Details",
-  "register": "Register"
+  "register": "Register",
+  "post": "Post"
 }

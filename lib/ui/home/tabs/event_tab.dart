@@ -112,4 +112,3 @@ class _EventTabState extends State<EventTab> {
     );
   }
 }
-

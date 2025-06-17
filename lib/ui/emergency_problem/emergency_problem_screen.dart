@@ -6,6 +6,7 @@ import '../../core/cubit/emergency/emergency_state.dart';
 import '../../core/cubit/user/user_state.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EmergencyProblemScreen extends StatelessWidget {
   static const String routeName = "Emergency Problem Screen";
@@ -81,8 +82,10 @@ class EmergencyProblemScreen extends StatelessWidget {
                       if (value == null || value.trim().isEmpty) {
                         return "Please enter your phone";
                       }
-                      if (value.length < 11) {
-                        return "Please enter valid phone number";
+                      value = value.trim();
+                      final RegExp regex = RegExp(r'^(010|011|012|015)[0-9]{8}$');
+                      if (!regex.hasMatch(value)) {
+                        return "Please enter a valid Egyptian phone number";
                       }
                       return null;
                     },
@@ -132,7 +135,7 @@ class EmergencyProblemScreen extends StatelessWidget {
                       state is SignUpLoading
                           ? const Center(child: CircularProgressIndicator())
                           : CustomButton(
-                          label: "Post problem",
+                          label: AppLocalizations.of(context)!.post,
                           onClick: () {
                             if (cubit.postEmergencyFormKey.currentState?.validate() == true) {
                               cubit.postEmergency();

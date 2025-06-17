@@ -30,33 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.social_services),
-        actions: [
-          SearchAnchor(
-            searchController: controller,
-            builder: (context, controller) {
-              return IconButton(
-                onPressed: () {
-                  controller.openView();
-                },
-                icon: const Icon(Icons.search),
-              );
-            },
-            suggestionsBuilder: (context, controller) {
-              return List<ListTile>.generate(6, (index) {
-                String item = "item $index";
-                return ListTile(
-                  title: const Text("item"),
-                  onTap: () {
-                    setState(() {
-                      controller.closeView(item);
-                    });
-                  },
-                );
-              });
-            },
-          ),
-          SizedBox(width: 12.w),
-        ],
       ),
       body: tabs[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

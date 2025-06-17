@@ -33,6 +33,11 @@ class AppStyle {
         fontWeight: FontWeight.bold,
         color: AppColors.secondaryLightColor,
       ),
+      labelSmall: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: Colors.black,
+      ),
       bodyMedium: const TextStyle(
         fontSize: 16,
         height: 1.5,
@@ -99,6 +104,11 @@ class AppStyle {
         fontSize: 16,
         height: 1.5,
         color: AppColors.secondaryDarkColor,
+      ),
+      labelSmall: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: Colors.white,
       ),
       titleMedium: TextStyle(
         fontSize: 18.sp,

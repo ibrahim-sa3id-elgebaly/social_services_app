@@ -69,34 +69,66 @@ class EditProfileScreen extends StatelessWidget {
                     label: "First Name",
                     keyboard: TextInputType.name,
                     validate: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Please enter your name";
+                      }
                       return null;
                     },
                   ),
+                  const SizedBox(height: 20),
                   CustomFormField(
                     controller: context.read<UserCubit>().signUpLastName,
                     label: "Last Name",
                     keyboard: TextInputType.name,
                     validate: (value) {
-                      return null;
-                    },
-                  ),
-                  CustomFormField(
-                    controller: context.read<UserCubit>().signUpPhoneNumber,
-                    label: "Phone Number",
-                    keyboard: TextInputType.phone,
-                    validate: (value) {
-                      return null;
-                    },
-                  ),
-                  CustomFormField(
-                    controller: context.read<UserCubit>().signUpGender,
-                    label: "Gender",
-                    keyboard: TextInputType.name,
-                    validate: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Please enter your name";
+                      }
                       return null;
                     },
                   ),
                   const SizedBox(height: 20),
+                  CustomFormField(
+                    controller: context.read<UserCubit>().signUpPhoneNumber,
+                    label: "Phone number",
+                    keyboard: TextInputType.phone,
+                    maxLength: 11,
+                    validate: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Please enter your phone";
+                      }
+                      if (value.length < 11) {
+                        return "Please enter valid phone number";
+                      }
+                      return null;
+                    },
+                  ),
+                  DropdownButtonFormField<String>(
+                    value: context.read<UserCubit>().signUpGender.text.isNotEmpty
+                        ? context.read<UserCubit>().signUpGender.text
+                        : null,
+                    decoration: const InputDecoration(
+                      labelText: 'Gender',
+                      border: UnderlineInputBorder(),
+                      iconColor: Colors.black,
+                    ),items: ['male', 'female'].map((gender) {
+                    return DropdownMenuItem<String>(
+                      value: gender,
+                      child: Text(gender,
+                          style: TextStyle(color: Theme.of(context).colorScheme.secondary,
+                              fontSize: 15)),
+                    );}).toList(),
+                    onChanged: (value) {
+                      context.read<UserCubit>().signUpGender.text = value!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select your gender';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 40),
                   state is SignInLoading
                       ? Center(child: CircularProgressIndicator())
                       : CustomButton(

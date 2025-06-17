@@ -104,8 +104,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (value == null || value.trim().isEmpty) {
                             return "Please enter your password";
                           }
-                          if (value.length < 6) {
-                            return "password should be at least 6";
+                          value = value.trim();
+                          final RegExp regex = RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+                          if (!regex.hasMatch(value)) {
+                            return "Password must be at least 8 characters,\ninclude uppercase, lowercase, number,\n and special character";
                           }
                           return null;
                         },
@@ -140,8 +142,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (value == null || value.trim().isEmpty) {
                             return "Please enter your phone";
                           }
-                          if (value.length < 11) {
-                            return "Please enter valid phone number";
+                          value = value.trim();
+                          final RegExp regex = RegExp(r'^(010|011|012|015)[0-9]{8}$');
+                          if (!regex.hasMatch(value)) {
+                            return "Please enter a valid Egyptian phone number";
                           }
                           return null;
                         },
@@ -160,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return DropdownMenuItem<String>(
                           value: gender,
                           child: Text(gender,
-                              style: const TextStyle(color: Colors.black,
+                              style: TextStyle(color: Theme.of(context).colorScheme.secondary,
                                   fontSize: 15)),
                         );}).toList(),
                         onChanged: (value) {

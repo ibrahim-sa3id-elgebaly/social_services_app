@@ -1,7 +1,7 @@
 {
   "social_services": "الخدمات الاجتماعية",
   "home": "الرئيسية",
-  "event": "المنتدي",
+  "event": "الفعاليات",
   "forum": "المنتدى",
   "person": "الشخصي",
   "settings": "الإعدادات",
@@ -27,6 +27,7 @@
   "registration": "تسجيل",
   "apply_form": "سجل الأن",
   "show_details": "عرض التفاصيل",
-  "register": "سجل"
+  "register": "سجل",
+  "post": "نشر"
 
 }
