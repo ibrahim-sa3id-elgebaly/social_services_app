@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'tabs/forum_tab.dart';
 import 'tabs/home_tab.dart';
 import 'tabs/event_tab.dart';
